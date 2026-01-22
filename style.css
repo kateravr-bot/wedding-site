@@ -24,19 +24,27 @@ body{
 .hero{
   position: relative;
   width: 100%;
-  height: auto;              /* σημαντικό: δεν “κλειδώνει” ύψος */
-  overflow: hidden;
+  max-height: 70vh;          /* ύψος “παραθύρου” (ρύθμισέ το 60–75vh) */
+  overflow-y: auto;          /* ΚΑΘΕΤΟ SCROLL */
+  overflow-x: hidden;
   border-bottom: var(--border);
-  background: var(--bg);     /* γεμίζει το κενό αν η εικόνα έχει “γράμματα” */
+  background: var(--bg);
 }
 
+/* η εικόνα να κρατάει την αναλογία της και να εμφανίζεται ολόκληρη */
 .hero__img{
   width: 100%;
-  height: auto;              /* δείχνει όλη την εικόνα */
-  object-fit: contain;       /* δεν χρειάζεται πλέον, αλλά δεν βλάπτει */
+  height: auto;
   display: block;
   transform: none;
 }
+
+/* προαιρετικό: πιο “καθαρό” scroll */
+.hero{
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
 
 
 .hero__overlay{
