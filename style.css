@@ -67,7 +67,7 @@ body{
 /* ΟΝΟΜΑΤΑ + ΗΜΕΡΟΜΗΝΙΑ ΠΑΝΩ ΔΕΞΙΑ */
 .hero__meta{
   position: absolute;
-  top: 14px;
+  top: 9px;
   right: 14px;
   text-align: right;
   z-index: 5;
