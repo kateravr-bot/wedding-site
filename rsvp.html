@@ -1,46 +1,78 @@
-<h2>RSVP</h2>
-<p>Παρακαλούμε απαντήστε έως 1 Ιουλίου 2026</p>
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<title>RSVP</title>
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<header>
+  <h1>RSVP</h1>
+  <nav>
+    <a href="index.html">Αρχική</a>
+    <a href="info.html">Πληροφορίες</a>
+    <a href="rsvp.html">RSVP</a>
+  </nav>
+</header>
+
+<section>
+<p>Παρακαλούμε απαντήστε έως <strong>10 Ιουνίου 2026</strong></p>
 
 <form id="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
 
-<label>Ονοματεπώνυμο</label><br>
-<input type="text" name="Όνομα" required><br><br>
+<label>Ονοματεπώνυμο *</label>
+<input type="text" name="Ονοματεπώνυμο" required>
 
-<label>Email</label><br>
-<input type="email" name="Email" required><br><br>
+<label>Email *</label>
+<input type="email" name="Email" required>
 
-<label>Θα παρευρεθείτε;</label><br>
+<label>Θα παρευρεθείτε στον γάμο; *</label>
 <select name="Παρουσία" required>
   <option value="">--</option>
   <option value="Ναι">Ναι</option>
   <option value="Όχι">Όχι</option>
-</select><br><br>
+</select>
 
-<label>Θα έχετε παιδιά μαζί σας;</label><br>
-<select name="Παιδιά">
+<label>Θα έχετε παιδιά μαζί σας;</label>
+<select id="kids" name="Παιδιά">
   <option value="Όχι">Όχι</option>
   <option value="Ναι">Ναι</option>
-</select><br><br>
+</select>
 
-<label>Ηλικίες παιδιών</label><br>
-<input type="text" name="Ηλικίες"><br><br>
+<div id="kidsAges" style="display:none;">
+  <label>Ηλικίες παιδιών</label>
+  <input type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 3, 6">
+</div>
 
 <input type="hidden" name="_subject" value="Νέο RSVP">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_autoresponse"
-value="Σας ευχαριστούμε για την απάντησή σας!">
+value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!">
 
 <button type="submit">Αποστολή</button>
 </form>
 
 <p id="closed" style="display:none;color:red;">
-Το RSVP έχει κλείσει.
+Το RSVP έχει κλείσει. Ευχαριστούμε!
 </p>
+</section>
 
 <script>
+document.getElementById("kids").addEventListener("change", function(){
+  document.getElementById("kidsAges").style.display =
+    this.value === "Ναι" ? "block" : "none";
+});
+
 const deadline = new Date("2026-06-10");
 if (new Date() > deadline) {
-  document.getElementById("rsvpForm").style.display="none";
-  document.getElementById("closed").style.display="block";
+  document.getElementById("rsvpForm").style.display = "none";
+  document.getElementById("closed").style.display = "block";
 }
 </script>
+
+<footer>Μαρία & Γιάννης</footer>
+</body>
+</html>
+
