@@ -2,26 +2,22 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8">
-<title>Ο Γάμος μας</title>
+<title>RSVP Γάμος</title>
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<header>
-  <h1>Κατερίνα & Γιάννης</h1>
-  <p>Σας προσκαλούμε με χαρά στον γάμο μας και στην ονοματοδοσία του γιού μας</p>
-  <nav>
-    <a href="index.html">Αρχική</a>
-    <a href="info.html">Πληροφορίες</a>
-    <a href="rsvp.html">RSVP</a>
-  </nav>
-</header>
 
+<!-- ΜΕΝΟΥ -->
+<nav style="background: linear-gradient(135deg, #ff6f91, #ffc75f); padding: 15px 0;">
+  <a href="rsvp.html" style="color:white; font-weight:600; text-decoration:none; font-size:18px;">RSVP</a>
+</nav>
+
+<!-- ΑΝΤΙΣΤΡΟΦΗ ΜΕΤΡΗΣΗ -->
 <section>
-  <p>Μετράμε αντίστροφα για την πιο όμορφη μέρα μας 💕</p>
-
   <div id="countdownBox">
+    <h2>Μετράμε αντίστροφα για την ημέρα μας 💕</h2>
     <div id="countdown">
       <div class="time"><span id="days">0</span>Ημέρες</div>
       <div class="time"><span id="hours">0</span>Ώρες</div>
@@ -31,20 +27,18 @@
   </div>
 </section>
 
-<footer>Κατερίνα & Γιάννης • 2026</footer>
-
 <script>
-const weddingDate = new Date("2026-08-29T18:30:00").getTime();
+const weddingDate = new Date("2026-06-20T18:30:00").getTime();
 
 setInterval(() => {
   const now = new Date().getTime();
   const diff = weddingDate - now;
   if (diff < 0) return;
 
-  days.innerText = Math.floor(diff / (1000*60*60*24));
-  hours.innerText = Math.floor((diff / (1000*60*60)) % 24);
-  minutes.innerText = Math.floor((diff / (1000*60)) % 60);
-  seconds.innerText = Math.floor((diff / 1000) % 60);
+  document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+  document.getElementById("hours").innerText = Math.floor((diff / (1000*60*60)) % 24);
+  document.getElementById("minutes").innerText = Math.floor((diff / (1000*60)) % 60);
+  document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
 }, 1000);
 </script>
 
