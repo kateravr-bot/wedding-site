@@ -1,121 +1,164 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<title>RSVP Γάμος</title>
-<link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>RSVP Γάμος</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
 
-<!-- ΜΕΝΟΥ -->
-<nav style="background: linear-gradient(135deg, #ff6f91, #ffc75f); padding: 15px 0; text-align:center;">
-  <span style="color:white; font-weight:600; font-size:18px;">RSVP</span>
-</nav>
-
-<!-- ΑΝΤΙΣΤΡΟΦΗ ΜΕΤΡΗΣΗ -->
-<section>
-  <div id="countdownBox">
-    <h2>Μετράμε αντίστροφα για την ημέρα μας 💕</h2>
-    <div id="countdown">
-      <div class="time"><span id="days">0</span>Ημέρες</div>
-      <div class="time"><span id="hours">0</span>Ώρες</div>
-      <div class="time"><span id="minutes">0</span>Λεπτά</div>
-      <div class="time"><span id="seconds">0</span>Δευτ.</div>
+  <!-- HERO (εικόνα καλωσορίσματος) -->
+  <header class="hero">
+    <img class="hero__img" src="assets/hero.png" alt="Καλωσόρισμα" />
+    <div class="hero__overlay">
+      <div class="hero__inner">
+        <h1 class="hero__title">RSVP</h1>
+        <p class="hero__subtitle">Επιβεβαίωση παρουσίας για τον γάμο μας</p>
+      </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- RSVP ΦΟΡΜΑ ΜΕ PASSWORD -->
-<section>
-<div id="passwordBox">
-  <p>Εισάγετε τον κωδικό από το προσκλητήριο 💌</p>
-  <input type="password" id="passwordInput" placeholder="Κωδικός">
-  <button onclick="checkPassword()">Είσοδος</button>
-  <p id="error" style="display:none;color:red;">Λάθος κωδικός</p>
-</div>
+  <main class="wrap">
 
-<div id="rsvpContent" style="display:none; margin: 30px auto; max-width:420px;">
+    <!-- COUNTDOWN -->
+    <section class="panel" aria-label="Αντίστροφη μέτρηση">
+      <h2 class="h2">Μετράμε αντίστροφα</h2>
+      <div id="countdown" class="countdown">
+        <div class="time"><span id="days">0</span><small>Ημέρες</small></div>
+        <div class="time"><span id="hours">0</span><small>Ώρες</small></div>
+        <div class="time"><span id="minutes">0</span><small>Λεπτά</small></div>
+        <div class="time"><span id="seconds">0</span><small>Δευτ.</small></div>
+      </div>
+    </section>
 
-<form id="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+    <!-- PASSWORD GATE -->
+    <section class="panel" aria-label="Κωδικός εισόδου">
+      <div id="passwordBox" class="passwordBox">
+        <p class="lead">Εισάγετε τον κωδικό από το προσκλητήριο</p>
+        <div class="row">
+          <input type="password" id="passwordInput" class="input" placeholder="Κωδικός" />
+          <button class="btn" type="button" onclick="checkPassword()">Είσοδος</button>
+        </div>
+        <p id="error" class="error" style="display:none;">Λάθος κωδικός</p>
+      </div>
 
-<label>Ονοματεπώνυμο</label>
-<input type="text" name="Όνομα" required>
+      <!-- RSVP CONTENT -->
+      <div id="rsvpContent" style="display:none;">
+        <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
 
-<label>Email</label>
-<input type="email" name="Email" required>
+          <div class="grid2">
+            <div class="field">
+              <label class="label">Ονοματεπώνυμο <span class="req">(required)</span></label>
+              <input class="input" type="text" name="Όνομα" placeholder="John Doe" required />
+            </div>
 
-<label>Θα παρευρεθείτε;</label>
-<select name="Παρουσία" required>
-  <option value="">--</option>
-  <option value="Ναι">Ναι</option>
-  <option value="Όχι">Όχι</option>
-</select>
+            <div class="field">
+              <label class="label">Email <span class="req">(required)</span></label>
+              <input class="input" type="email" name="Email" placeholder="john.doe@example.com" required />
+            </div>
+          </div>
 
-<label>Παιδιά;</label>
-<select id="kids">
-  <option value="Όχι">Όχι</option>
-  <option value="Ναι">Ναι</option>
-</select>
+          <div class="field">
+            <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">(required)</span></label>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="Παρουσία" value="Ναι" required />
+                <span>Ναι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παρουσία" value="Όχι" required />
+                <span>Όχι</span>
+              </label>
+            </div>
+          </div>
 
-<div id="kidsAges" style="display:none;">
-  <label>Ηλικίες παιδιών</label>
-  <input type="text" name="Ηλικίες">
-</div>
+          <div class="field">
+            <label class="label">Πόσα άτομα θα είστε; <span class="req">(required)</span></label>
+            <input class="input" type="number" name="Άτομα" min="1" max="10" placeholder="2" required />
+          </div>
 
-<input type="hidden" name="_subject" value="Νέο RSVP">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_autoresponse"
-value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!">
+          <div class="field">
+            <label class="label">Υπάρχουν παιδιά; <span class="req">(required)</span></label>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Όχι" checked />
+                <span>Όχι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Ναι" />
+                <span>Ναι</span>
+              </label>
+            </div>
+          </div>
 
-<button type="submit">Αποστολή</button>
-</form>
+          <div id="kidsAges" class="field" style="display:none;">
+            <label class="label">Αν ναι, ηλικίες παιδιών <span class="req">(required)</span></label>
+            <input class="input" type="text" name="Ηλικίες" placeholder="π.χ. 2 παιδιά, 4 και 7 ετών" />
+          </div>
 
-<p id="closed" style="display:none;color:red;">
-Το RSVP έχει κλείσει.
-</p>
+          <div class="field">
+            <label class="label">Σχόλια</label>
+            <textarea class="textarea" name="Σχόλια" rows="4" placeholder=""></textarea>
+          </div>
 
-</div>
-</section>
+          <input type="hidden" name="_subject" value="Νέο RSVP" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
 
-<script>
-// COUNTDOWN
-const weddingDate = new Date("2026-06-20T18:30:00").getTime();
-setInterval(() => {
-  const now = new Date().getTime();
-  const diff = weddingDate - now;
-  if(diff < 0) return;
-  document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
-  document.getElementById("hours").innerText = Math.floor((diff / (1000*60*60)) % 24);
-  document.getElementById("minutes").innerText = Math.floor((diff / (1000*60)) % 60);
-  document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
-},1000);
+          <button class="btn btn--wide" type="submit">Αποστολή</button>
+        </form>
 
-// PASSWORD
-const correctPassword = "LOVE2026";
-function checkPassword() {
-  if(document.getElementById("passwordInput").value === correctPassword){
-    document.getElementById("passwordBox").style.display="none";
-    document.getElementById("rsvpContent").style.display="block";
-  } else {
-    document.getElementById("error").style.display="block";
-  }
-}
+        <p id="closed" class="error" style="display:none;">
+          Το RSVP έχει κλείσει.
+        </p>
+      </div>
+    </section>
 
-// ΠΑΙΔΙΑ
-document.getElementById("kids").addEventListener("change", () => {
-  document.getElementById("kidsAges").style.display =
-    document.getElementById("kids").value === "Ναι" ? "block" : "none";
-});
+  </main>
 
-// ΚΛΕΙΔΩΜΑ RSVP
-const deadline = new Date("2026-07-10");
-if(new Date() > deadline){
-  document.getElementById("rsvpForm").style.display="none";
-  document.getElementById("closed").style.display="block";
-}
-</script>
+  <script>
+    // COUNTDOWN
+    const weddingDate = new Date("2026-06-20T18:30:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      if (diff < 0) return;
+      document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").innerText = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
+    }, 1000);
+
+    // PASSWORD
+    const correctPassword = "LOVE2026";
+    function checkPassword() {
+      if (document.getElementById("passwordInput").value === correctPassword) {
+        document.getElementById("passwordBox").style.display = "none";
+        document.getElementById("rsvpContent").style.display = "block";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    }
+
+    // ΠΑΙΔΙΑ (radio)
+    function syncKidsAges() {
+      const kidsYes = document.querySelector('input[name="Παιδιά"][value="Ναι"]').checked;
+      document.getElementById("kidsAges").style.display = kidsYes ? "block" : "none";
+    }
+    document.querySelectorAll('input[name="Παιδιά"]').forEach(el => {
+      el.addEventListener("change", syncKidsAges);
+    });
+    syncKidsAges();
+
+    // ΚΛΕΙΔΩΜΑ RSVP
+    const deadline = new Date("2026-07-10");
+    if (new Date() > deadline) {
+      document.getElementById("rsvpForm").style.display = "none";
+      document.getElementById("closed").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
