@@ -1,63 +1,61 @@
+/* Pop-art + ρομαντικό στυλ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle, #fff0f6, #ffe3ec);
-  color: #333;
-  margin: 0;
-  text-align: center;
+body{
+  font-family:'Poppins',sans-serif;
+  background: radial-gradient(circle,#fff0f6,#ffe3ec);
+  color:#333;
+  margin:0;
+  text-align:center;
 }
 
-header {
-  background: linear-gradient(135deg, #ff6f91, #ffc75f);
-  padding: 50px 20px;
-  color: white;
+input,select,button{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  margin-top:10px;
+  border:2px solid #ffd6e8;
 }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  margin-bottom: 10px;
+button{
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
 }
 
-nav a {
-  margin: 0 12px;
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  background: rgba(255,255,255,0.25);
-  padding: 6px 14px;
-  border-radius: 20px;
+button:hover{
+  background:#ff2e63;
 }
 
-nav a:hover {
-  background: rgba(255,255,255,0.4);
+/* COUNTDOWN POP ART */
+#countdownBox{
+  background: linear-gradient(135deg,#ffb3c6,#ffd6e8);
+  padding:40px 20px;
+  border-radius:30px;
+  margin:40px auto;
+  max-width:700px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.2);
 }
 
-section {
-  padding: 40px 20px;
+#countdown{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+
+.time{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  min-width:100px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  animation:pop 1.5s infinite alternate;
 }
 
-form, #passwordBox {
-  background: white;
-  max-width: 420px;
-  margin: auto;
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+.time span{
+  font-size:32px;
+  font-weight:bold;
+  color:#ff2e63;
 }
 
-label {
-  font-weight: 600;
-  margin-top: 15px;
-  display: block;
-}
-
-input, select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 12px;
-  border: 2px solid #ffd6e8;
-}
-
-button {
+@keyframes pop{from{transform:scale(1);}to{transform:scale(1.08);}}
