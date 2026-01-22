@@ -19,58 +19,32 @@
 </header>
 
 <section>
-  <p>
-  Με μεγάλη χαρά σας προσκαλούμε να γιορτάσετε μαζί μας
-  την πιο όμορφη μέρα της ζωής μας.
-  </p>
-  <div id="countdownBox">
-  <h2>Μετράμε αντίστροφα για την ημέρα μας 💕</h2>
+  <p>Μετράμε αντίστροφα για την πιο όμορφη μέρα μας 💕</p>
 
-  <div id="countdown">
-    <div class="time">
-      <span id="days">0</span>
-      <small>Ημέρες</small>
-    </div>
-    <div class="time">
-      <span id="hours">0</span>
-      <small>Ώρες</small>
-    </div>
-    <div class="time">
-      <span id="minutes">0</span>
-      <small>Λεπτά</small>
-    </div>
-    <div class="time">
-      <span id="seconds">0</span>
-      <small>Δευτ.</small>
+  <div id="countdownBox">
+    <div id="countdown">
+      <div class="time"><span id="days">0</span>Ημέρες</div>
+      <div class="time"><span id="hours">0</span>Ώρες</div>
+      <div class="time"><span id="minutes">0</span>Λεπτά</div>
+      <div class="time"><span id="seconds">0</span>Δευτ.</div>
     </div>
   </div>
-</div>
-
 </section>
 
-<footer>
-  Μαρία & Γιάννης • 2026
-</footer>
-  <script>
-const weddingDate = new Date("2026-08-29T18:30:00").getTime(); // ΑΛΛΑΞΕ ΗΜΕΡΟΜΗΝΙΑ
+<footer>Μαρία & Γιάννης • 2026</footer>
+
+<script>
+const weddingDate = new Date("2026-06-20T18:30:00").getTime();
 
 setInterval(() => {
   const now = new Date().getTime();
   const diff = weddingDate - now;
-
   if (diff < 0) return;
 
-  document.getElementById("days").innerText =
-    Math.floor(diff / (1000 * 60 * 60 * 24));
-
-  document.getElementById("hours").innerText =
-    Math.floor((diff / (1000 * 60 * 60)) % 24);
-
-  document.getElementById("minutes").innerText =
-    Math.floor((diff / (1000 * 60)) % 60);
-
-  document.getElementById("seconds").innerText =
-    Math.floor((diff / 1000) % 60);
+  days.innerText = Math.floor(diff / (1000*60*60*24));
+  hours.innerText = Math.floor((diff / (1000*60*60)) % 24);
+  minutes.innerText = Math.floor((diff / (1000*60)) % 60);
+  seconds.innerText = Math.floor((diff / 1000) % 60);
 }, 1000);
 </script>
 
