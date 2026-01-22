@@ -20,55 +20,78 @@
 <section>
 
 <div id="passwordBox">
-  <p>Παρακαλούμε εισάγετε τον κωδικό από το προσκλητήριο 💌</p>
-  <input type="password" id="passwordInput" placeholder="Κωδικός">
+  <p>Εισάγετε τον κωδικό από το προσκλητήριο 💌</p>
+  <input type="password" id="passwordInput">
   <button onclick="checkPassword()">Είσοδος</button>
-  <p id="error" style="color:red; display:none;">Λάθος κωδικός</p>
+  <p id="error" style="display:none;color:red;">Λάθος κωδικός</p>
 </div>
 
 <div id="rsvpContent" style="display:none;">
 
-<p>Παρακαλούμε απαντήστε έως <strong>1 Ιουλίου 2026</strong></p>
+<form id="rsvpForm" action="https://formsubmit.co/kat.avramidou@gmail.com" method="POST">
 
-<form id="rsvpForm" action="https://formsubmit.co/kater.avramidou@gmail.com" method="POST">
-  <!-- Η φόρμα σου εδώ (όπως πριν) -->
+<label>Ονοματεπώνυμο</label>
+<input type="text" name="Όνομα" required>
+
+<label>Email</label>
+<input type="email" name="Email" required>
+
+<label>Θα παρευρεθείτε;</label>
+<select name="Παρουσία" required>
+  <option value="">--</option>
+  <option value="Ναι">Ναι</option>
+  <option value="Όχι">Όχι</option>
+</select>
+
+<label>Παιδιά;</label>
+<select id="kids">
+  <option value="Όχι">Όχι</option>
+  <option value="Ναι">Ναι</option>
+</select>
+
+<div id="kidsAges" style="display:none;">
+  <label>Ηλικίες παιδιών</label>
+  <input type="text" name="Ηλικίες">
+</div>
+
+<input type="hidden" name="_subject" value="Νέο RSVP">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_autoresponse"
+value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!">
+
+<button type="submit">Αποστολή</button>
 </form>
 
 <p id="closed" style="display:none;color:red;">
-Το RSVP έχει κλείσει. Ευχαριστούμε!
+Το RSVP έχει κλείσει.
 </p>
 
 </div>
 </section>
 
 <script>
-document.getElementById("kids").addEventListener("change", function(){
-  document.getElementById("kidsAges").style.display =
-    this.value === "Ναι" ? "block" : "none";
-});
-
-const deadline = new Date("2026-06-10");
-if (new Date() > deadline) {
-  document.getElementById("rsvpForm").style.display = "none";
-  document.getElementById("closed").style.display = "block";
-}
-</script>
-  <script>
-const correctPassword = "LOVE2026"; // ΑΛΛΑΞΕ ΤΟ
+const correctPassword = "LOVE2026";
 
 function checkPassword() {
-  const input = document.getElementById("passwordInput").value;
-  if (input === correctPassword) {
-    document.getElementById("passwordBox").style.display = "none";
-    document.getElementById("rsvpContent").style.display = "block";
+  if (passwordInput.value === correctPassword) {
+    passwordBox.style.display = "none";
+    rsvpContent.style.display = "block";
   } else {
-    document.getElementById("error").style.display = "block";
+    error.style.display = "block";
   }
+}
+
+kids.addEventListener("change", () => {
+  kidsAges.style.display = kids.value === "Ναι" ? "block" : "none";
+});
+
+const deadline = new Date("2026-07-01");
+if (new Date() > deadline) {
+  rsvpForm.style.display = "none";
+  closed.style.display = "block";
 }
 </script>
 
-
-<footer>Μαρία & Γιάννης</footer>
+<footer>Κατερίνα & Γιάννης</footer>
 </body>
 </html>
-
