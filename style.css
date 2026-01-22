@@ -78,6 +78,60 @@ body{
   max-width: 52ch;
 }
 
+.hero__overlay{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.18),
+    rgba(0,0,0,0.08) 55%,
+    rgba(0,0,0,0.35)
+  );
+  display:flex;
+  align-items:flex-end;
+}
+
+.hero__inner{
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 22px 0 26px;
+}
+
+.hero__card{
+  display: inline-block;
+  background: rgba(255,255,255,0.92);
+  border: var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.hero__names{
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.hero__date{
+  margin-top: 6px;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(22px, 3vw, 44px);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.kids-ages{
+  margin-top: 12px;
+}
+
+.label--sub{
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+
+
 /* LAYOUT */
 .wrap{
   width: min(1100px, 92vw);
