@@ -10,8 +10,8 @@
 <body>
 
 <!-- ΜΕΝΟΥ -->
-<nav style="background: linear-gradient(135deg, #ff6f91, #ffc75f); padding: 15px 0;">
-  <a href="rsvp.html" style="color:white; font-weight:600; text-decoration:none; font-size:18px;">RSVP</a>
+<nav style="background: linear-gradient(135deg, #ff6f91, #ffc75f); padding: 15px 0; text-align:center;">
+  <span style="color:white; font-weight:600; font-size:18px;">RSVP</span>
 </nav>
 
 <!-- ΑΝΤΙΣΤΡΟΦΗ ΜΕΤΡΗΣΗ -->
@@ -27,19 +27,94 @@
   </div>
 </section>
 
-<script>
-const weddingDate = new Date("2026-06-20T18:30:00").getTime();
+<!-- RSVP ΦΟΡΜΑ ΜΕ PASSWORD -->
+<section>
+<div id="passwordBox">
+  <p>Εισάγετε τον κωδικό από το προσκλητήριο 💌</p>
+  <input type="password" id="passwordInput" placeholder="Κωδικός">
+  <button onclick="checkPassword()">Είσοδος</button>
+  <p id="error" style="display:none;color:red;">Λάθος κωδικός</p>
+</div>
 
+<div id="rsvpContent" style="display:none; margin: 30px auto; max-width:420px;">
+
+<form id="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+
+<label>Ονοματεπώνυμο</label>
+<input type="text" name="Όνομα" required>
+
+<label>Email</label>
+<input type="email" name="Email" required>
+
+<label>Θα παρευρεθείτε;</label>
+<select name="Παρουσία" required>
+  <option value="">--</option>
+  <option value="Ναι">Ναι</option>
+  <option value="Όχι">Όχι</option>
+</select>
+
+<label>Παιδιά;</label>
+<select id="kids">
+  <option value="Όχι">Όχι</option>
+  <option value="Ναι">Ναι</option>
+</select>
+
+<div id="kidsAges" style="display:none;">
+  <label>Ηλικίες παιδιών</label>
+  <input type="text" name="Ηλικίες">
+</div>
+
+<input type="hidden" name="_subject" value="Νέο RSVP">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_autoresponse"
+value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!">
+
+<button type="submit">Αποστολή</button>
+</form>
+
+<p id="closed" style="display:none;color:red;">
+Το RSVP έχει κλείσει.
+</p>
+
+</div>
+</section>
+
+<script>
+// COUNTDOWN
+const weddingDate = new Date("2026-06-20T18:30:00").getTime();
 setInterval(() => {
   const now = new Date().getTime();
   const diff = weddingDate - now;
-  if (diff < 0) return;
-
+  if(diff < 0) return;
   document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
   document.getElementById("hours").innerText = Math.floor((diff / (1000*60*60)) % 24);
   document.getElementById("minutes").innerText = Math.floor((diff / (1000*60)) % 60);
   document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
-}, 1000);
+},1000);
+
+// PASSWORD
+const correctPassword = "LOVE2026";
+function checkPassword() {
+  if(document.getElementById("passwordInput").value === correctPassword){
+    document.getElementById("passwordBox").style.display="none";
+    document.getElementById("rsvpContent").style.display="block";
+  } else {
+    document.getElementById("error").style.display="block";
+  }
+}
+
+// ΠΑΙΔΙΑ
+document.getElementById("kids").addEventListener("change", () => {
+  document.getElementById("kidsAges").style.display =
+    document.getElementById("kids").value === "Ναι" ? "block" : "none";
+});
+
+// ΚΛΕΙΔΩΜΑ RSVP
+const deadline = new Date("2026-06-10");
+if(new Date() > deadline){
+  document.getElementById("rsvpForm").style.display="none";
+  document.getElementById("closed").style.display="block";
+}
 </script>
 
 </body>
