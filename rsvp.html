@@ -1,0 +1,46 @@
+<h2>RSVP</h2>
+<p>Παρακαλούμε απαντήστε έως 1 Ιουλίου 2026</p>
+
+<form id="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+
+<label>Ονοματεπώνυμο</label><br>
+<input type="text" name="Όνομα" required><br><br>
+
+<label>Email</label><br>
+<input type="email" name="Email" required><br><br>
+
+<label>Θα παρευρεθείτε;</label><br>
+<select name="Παρουσία" required>
+  <option value="">--</option>
+  <option value="Ναι">Ναι</option>
+  <option value="Όχι">Όχι</option>
+</select><br><br>
+
+<label>Θα έχετε παιδιά μαζί σας;</label><br>
+<select name="Παιδιά">
+  <option value="Όχι">Όχι</option>
+  <option value="Ναι">Ναι</option>
+</select><br><br>
+
+<label>Ηλικίες παιδιών</label><br>
+<input type="text" name="Ηλικίες"><br><br>
+
+<input type="hidden" name="_subject" value="Νέο RSVP">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_autoresponse"
+value="Σας ευχαριστούμε για την απάντησή σας!">
+
+<button type="submit">Αποστολή</button>
+</form>
+
+<p id="closed" style="display:none;color:red;">
+Το RSVP έχει κλείσει.
+</p>
+
+<script>
+const deadline = new Date("2026-06-10");
+if (new Date() > deadline) {
+  document.getElementById("rsvpForm").style.display="none";
+  document.getElementById("closed").style.display="block";
+}
+</script>
