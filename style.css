@@ -1,6 +1,6 @@
-/* Pop / bold RSVP style (κίτρινο + μαύρα περιγράμματα) */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;800&family=Roboto+Slab:wght@400;500;600;700&family=Great+Vibes&family=Allura&display=swap');
+/* POP / BOLD RSVP THEME (κίτρινο + μαύρα περιγράμματα) */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Slab:wght@400;500;600;700&family=Great+Vibes&family=Allura&display=swap');
 
 :root{
   --bg: #FFD400;
@@ -20,18 +20,19 @@ body{
   color: var(--ink);
 }
 
-/* HERO */
+/* HERO: full image via internal scroll window */
 .hero{
   position: relative;
   width: 100%;
-  max-height: 70vh;          /* ύψος “παραθύρου” (ρύθμισέ το 60–75vh) */
-  overflow-y: auto;          /* ΚΑΘΕΤΟ SCROLL */
+  max-height: 70vh;          /* “παράθυρο” hero — ρύθμισέ το 60–75vh */
+  overflow-y: auto;          /* ΚΑΘΕΤΟ SCROLL για να δεις όλη τη hero.png */
   overflow-x: hidden;
   border-bottom: var(--border);
   background: var(--bg);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
 }
 
-/* η εικόνα να κρατάει την αναλογία της και να εμφανίζεται ολόκληρη */
 .hero__img{
   width: 100%;
   height: auto;
@@ -39,66 +40,12 @@ body{
   transform: none;
 }
 
-/* προαιρετικό: πιο “καθαρό” scroll */
-.hero{
-  -webkit-overflow-scrolling: touch;
-  scrollbar-gutter: stable;
-}
-
-
-
+/* overlay για να “γράφουν” τα κείμενα πάνω στην εικόνα */
 .hero__overlay{
   position:absolute;
   inset:0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.10) 55%,
-    rgba(0,0,0,0.55)
-  );
-  display:flex;
-  align-items:flex-end;
-}
-
-.hero__inner{
-  width: min(1100px, 92vw);
-  margin: 0 auto;
-  padding: 26px 0 28px;
-}
-
-.hero__title{
-  margin: 14px 0 0;
-  font-family: "Roboto Slab", serif;
-  font-weight: 600; /* λιγότερο bold (δοκίμασε 500 αν το θες ακόμη πιο light) */
-  font-size: clamp(64px, 8vw, 120px);
-  letter-spacing: 0.5px;
-  line-height: 0.95;
-
-  /* ΚΙΤΡΙΝΟ RSVP */
-  color: #FFD400;
-
-  /* Μαύρο περίγραμμα για να διαβάζεται πάνω στη φωτο */
-  -webkit-text-stroke: 4px #000;
-  paint-order: stroke fill;
-
-  /* ελαφριά σκιά */
-  text-shadow:
-    0 8px 0 rgba(0,0,0,0.30),
-    0 20px 45px rgba(0,0,0,0.18);
-}
-
-
-.hero__subtitle{
-  margin:10px 0 0;
-  color: rgba(255,255,255,0.92);
-  font-weight: 600;
-  font-size: clamp(14px, 2vw, 18px);
-  max-width: 52ch;
-}
-
-.hero__overlay{
-  position:absolute;
-  inset:0;
+  z-index: 2;
+  pointer-events: none; /* να μπορείς να κάνεις scroll πάνω στο hero */
   background: linear-gradient(
     to bottom,
     rgba(0,0,0,0.18),
@@ -110,47 +57,46 @@ body{
 }
 
 .hero__inner{
+  position: relative; /* anchor για absolute meta */
+  z-index: 3;
   width: min(1100px, 92vw);
   margin: 0 auto;
-  padding: 22px 0 26px;
+  padding: 18px 0 22px;
 }
 
-.hero__card{
-  display: inline-block;
-  background: rgba(255,255,255,0.92);
-  border: var(--border);
-  border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+/* ΟΝΟΜΑΤΑ + ΗΜΕΡΟΜΗΝΙΑ ΠΑΝΩ ΔΕΞΙΑ */
+.hero__meta{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  text-align: right;
+  z-index: 5;
+  margin: 0;
 }
 
+/* “Υπογραφή” ονόματα, έντονα χρώματα */
 .hero__names{
   font-family: "Great Vibes", cursive;
   font-weight: 400;
-  font-size: clamp(38px, 5vw, 78px);
+  font-size: clamp(34px, 4.8vw, 74px);
   line-height: 1.0;
   letter-spacing: 0.5px;
 
-  /* έντονο “υπογραφή” χρώμα */
   background: linear-gradient(90deg, #ff2e63, #7c4dff, #00c2ff, #00d084);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 
-  /* μικρό “outline” για να γράφει πάνω σε φωτό */
-  -webkit-text-stroke: 1.5px rgba(0,0,0,0.55);
-
-  /* pop glow */
-  text-shadow:
-    0 2px 0 rgba(0,0,0,0.10),
-    0 10px 24px rgba(0,0,0,0.18);
+  -webkit-text-stroke: 1.4px rgba(0,0,0,0.55);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.35));
+  text-align: right;
 }
 
 .hero__date{
-  margin-top: 6px;
+  margin-top: 4px;
   font-family: "Allura", cursive;
   font-weight: 400;
-  font-size: clamp(22px, 3vw, 44px);
+  font-size: clamp(20px, 3vw, 44px);
   letter-spacing: 1px;
 
   background: linear-gradient(90deg, #ffd400, #ff7a00, #ff2e63);
@@ -159,20 +105,42 @@ body{
   color: transparent;
 
   -webkit-text-stroke: 1px rgba(0,0,0,0.45);
-  text-shadow: 0 10px 24px rgba(0,0,0,0.14);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.25));
+  text-align: right;
 }
 
-.kids-ages{
-  margin-top: 12px;
+@media (max-width: 480px){
+  .hero__meta{
+    top: 10px;
+    right: 10px;
+  }
 }
 
-.label--sub{
-  font-size: 16px;
-  font-weight: 800;
-  margin-top: 10px;
+/* RSVP title: κίτρινο + λιγότερο bold */
+.hero__title{
+  margin: 54px 0 0; /* αφήνει “αέρα” ώστε να μην πέφτει πάνω στο meta */
+  font-family: "Roboto Slab", serif;
+  font-weight: 600; /* λιγότερο bold (δοκίμασε 500 αν το θες ακόμη πιο light) */
+  font-size: clamp(64px, 8vw, 120px);
+  letter-spacing: 0.5px;
+  line-height: 0.95;
+
+  color: #FFD400;
+  -webkit-text-stroke: 4px #000;
+  paint-order: stroke fill;
+
+  text-shadow:
+    0 8px 0 rgba(0,0,0,0.30),
+    0 20px 45px rgba(0,0,0,0.18);
 }
 
-
+.hero__subtitle{
+  margin: 10px 0 0;
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
+  font-size: clamp(14px, 2vw, 18px);
+  max-width: 56ch;
+}
 
 /* LAYOUT */
 .wrap{
@@ -242,9 +210,7 @@ body{
 }
 
 /* FORM */
-.form{
-  margin-top: 8px;
-}
+.form{ margin-top: 8px; }
 
 .grid2{
   display:grid;
@@ -256,9 +222,7 @@ body{
   .grid2{ grid-template-columns: 1fr; }
 }
 
-.field{
-  margin: 0 0 16px;
-}
+.field{ margin: 0 0 16px; }
 
 .label{
   display:block;
@@ -319,6 +283,15 @@ body{
   width: 22px;
   height: 22px;
   accent-color: #000;
+}
+
+/* Kids ages block (κάτω από “Παιδιά;”) */
+.kids-ages{ margin-top: 12px; }
+
+.label--sub{
+  font-size: 16px;
+  font-weight: 800;
+  margin-top: 10px;
 }
 
 /* BUTTONS */
