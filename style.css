@@ -1,63 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@400;600&display=swap');
+
 body {
-  font-family: "Georgia", serif;
-  background: #faf7f4;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle, #fff0f6, #ffe3ec);
   color: #333;
   margin: 0;
-  padding: 0;
   text-align: center;
 }
 
 header {
-  background: #e8dcd4;
-  padding: 40px 20px;
+  background: linear-gradient(135deg, #ff6f91, #ffc75f);
+  padding: 50px 20px;
+  color: white;
 }
 
 h1 {
-  font-size: 36px;
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
   margin-bottom: 10px;
 }
 
 nav a {
-  margin: 0 15px;
+  margin: 0 12px;
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
+  color: white;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.4);
 }
 
 section {
   padding: 40px 20px;
 }
 
-form {
-  max-width: 500px;
+form, #passwordBox {
+  background: white;
+  max-width: 420px;
   margin: auto;
-  text-align: left;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 label {
-  font-weight: bold;
+  font-weight: 600;
+  margin-top: 15px;
+  display: block;
 }
 
-input, select, button {
+input, select {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
+  border-radius: 12px;
+  border: 2px solid #ffd6e8;
 }
 
 button {
-  background: #c6a992;
+  background: #ff4d6d;
   color: white;
   border: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 16px;
   margin-top: 20px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #b19179;
+  background: #ff2e63;
 }
 
 footer {
-  padding: 20px;
-  font-size: 14px;
+  margin: 40px 0;
   color: #777;
 }
