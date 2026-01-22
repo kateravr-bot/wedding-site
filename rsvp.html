@@ -18,45 +18,27 @@
 </header>
 
 <section>
-<p>Παρακαλούμε απαντήστε έως <strong>10 Ιουνίου 2026</strong></p>
 
-<form id="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-
-<label>Ονοματεπώνυμο *</label>
-<input type="text" name="Ονοματεπώνυμο" required>
-
-<label>Email *</label>
-<input type="email" name="Email" required>
-
-<label>Θα παρευρεθείτε στον γάμο; *</label>
-<select name="Παρουσία" required>
-  <option value="">--</option>
-  <option value="Ναι">Ναι</option>
-  <option value="Όχι">Όχι</option>
-</select>
-
-<label>Θα έχετε παιδιά μαζί σας;</label>
-<select id="kids" name="Παιδιά">
-  <option value="Όχι">Όχι</option>
-  <option value="Ναι">Ναι</option>
-</select>
-
-<div id="kidsAges" style="display:none;">
-  <label>Ηλικίες παιδιών</label>
-  <input type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 3, 6">
+<div id="passwordBox">
+  <p>Παρακαλούμε εισάγετε τον κωδικό από το προσκλητήριο 💌</p>
+  <input type="password" id="passwordInput" placeholder="Κωδικός">
+  <button onclick="checkPassword()">Είσοδος</button>
+  <p id="error" style="color:red; display:none;">Λάθος κωδικός</p>
 </div>
 
-<input type="hidden" name="_subject" value="Νέο RSVP">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_autoresponse"
-value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!">
+<div id="rsvpContent" style="display:none;">
 
-<button type="submit">Αποστολή</button>
+<p>Παρακαλούμε απαντήστε έως <strong>1 Ιουλίου 2026</strong></p>
+
+<form id="rsvpForm" action="https://formsubmit.co/kater.avramidou@gmail.com" method="POST">
+  <!-- Η φόρμα σου εδώ (όπως πριν) -->
 </form>
 
 <p id="closed" style="display:none;color:red;">
 Το RSVP έχει κλείσει. Ευχαριστούμε!
 </p>
+
+</div>
 </section>
 
 <script>
@@ -71,6 +53,20 @@ if (new Date() > deadline) {
   document.getElementById("closed").style.display = "block";
 }
 </script>
+  <script>
+const correctPassword = "LOVE2026"; // ΑΛΛΑΞΕ ΤΟ
+
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if (input === correctPassword) {
+    document.getElementById("passwordBox").style.display = "none";
+    document.getElementById("rsvpContent").style.display = "block";
+  } else {
+    document.getElementById("error").style.display = "block";
+  }
+}
+</script>
+
 
 <footer>Μαρία & Γιάννης</footer>
 </body>
