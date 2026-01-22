@@ -1,5 +1,5 @@
 /* Pop / bold RSVP style (κίτρινο + μαύρα περιγράμματα) */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;800&family=Roboto+Slab:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;800&family=Roboto+Slab:wght@400;500;600;700&family=Great+Vibes&family=Allura&display=swap');
 
 
 :root{
@@ -125,19 +125,43 @@ body{
 }
 
 .hero__names{
-  font-family: "DM Serif Display", serif;
-  font-size: clamp(28px, 4vw, 56px);
+  font-family: "Great Vibes", cursive;
   font-weight: 400;
-  line-height: 1.05;
+  font-size: clamp(38px, 5vw, 78px);
+  line-height: 1.0;
+  letter-spacing: 0.5px;
+
+  /* έντονο “υπογραφή” χρώμα */
+  background: linear-gradient(90deg, #ff2e63, #7c4dff, #00c2ff, #00d084);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* μικρό “outline” για να γράφει πάνω σε φωτό */
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.55);
+
+  /* pop glow */
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.10),
+    0 10px 24px rgba(0,0,0,0.18);
 }
 
 .hero__date{
   margin-top: 6px;
-  font-family: "DM Serif Display", serif;
-  font-size: clamp(22px, 3vw, 44px);
+  font-family: "Allura", cursive;
   font-weight: 400;
+  font-size: clamp(22px, 3vw, 44px);
   letter-spacing: 1px;
+
+  background: linear-gradient(90deg, #ffd400, #ff7a00, #ff2e63);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  -webkit-text-stroke: 1px rgba(0,0,0,0.45);
+  text-shadow: 0 10px 24px rgba(0,0,0,0.14);
 }
+
 .kids-ages{
   margin-top: 12px;
 }
