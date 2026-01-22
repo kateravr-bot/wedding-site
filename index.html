@@ -84,7 +84,7 @@
 
           <div class="field">
             <label class="label">Πόσα άτομα θα είστε; <span class="req">(required)</span></label>
-            <input class="input" type="number" name="Άτομα" min="1" max="10" placeholder="2" required />
+            <input class="input" id="guestsCount" type="number" name="Άτομα" min="1" max="10" placeholder="2" value="1" required />
           </div>
 
           <div class="field">
@@ -167,6 +167,38 @@
       document.getElementById("rsvpForm").style.display = "none";
       document.getElementById("closed").style.display = "block";
     }
+// ΚΛΕΙΔΩΜΑ "ΑΤΟΜΑ" ΑΝ Η ΠΑΡΟΥΣΙΑ ΕΙΝΑΙ ΟΧΙ
+function syncGuestsCountWithAttendance(){
+  const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
+  const guests = document.getElementById("guestsCount");
+
+  if (!guests) return;
+
+  if (attendingNo) {
+    guests.value = "1";
+    guests.min = "1";
+    guests.max = "1";
+    guests.readOnly = true;       // κλειδωμένο αλλά θα σταλεί στο form
+    guests.style.opacity = "0.75";
+    guests.style.cursor = "not-allowed";
+  } else {
+    guests.min = "1";
+    guests.max = "10";
+    guests.readOnly = false;
+    guests.style.opacity = "1";
+    guests.style.cursor = "auto";
+  }
+}
+
+// listener στα radio Παρουσία
+document.querySelectorAll('input[name="Παρουσία"]').forEach(el => {
+  el.addEventListener("change", syncGuestsCountWithAttendance);
+});
+
+// αρχικό sync
+syncGuestsCountWithAttendance();
+
+    
   </script>
 
 </body>
