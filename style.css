@@ -60,14 +60,23 @@ body{
 
 .hero__title{
   margin: 14px 0 0;
-  font-family: "Alfa Slab One", serif;
+  font-family: "Roboto Slab", serif;
+  font-weight: 600; /* λιγότερο bold (δοκίμασε 500 αν το θες ακόμη πιο light) */
   font-size: clamp(64px, 8vw, 120px);
   letter-spacing: 0.5px;
-  color: #000;
   line-height: 0.95;
+
+  /* ΚΙΤΡΙΝΟ RSVP */
+  color: #FFD400;
+
+  /* Μαύρο περίγραμμα για να διαβάζεται πάνω στη φωτο */
+  -webkit-text-stroke: 4px #000;
+  paint-order: stroke fill;
+
+  /* ελαφριά σκιά */
   text-shadow:
-    0 6px 0 rgba(0,0,0,0.25),
-    0 18px 40px rgba(0,0,0,0.18);
+    0 8px 0 rgba(0,0,0,0.30),
+    0 20px 45px rgba(0,0,0,0.18);
 }
 
 
