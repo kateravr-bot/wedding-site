@@ -5,25 +5,29 @@
   <title>RSVP Γάμος</title>
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head> 
+</head>
 
-  <!-- HERO (εικόνα καλωσορίσματος) -->
-  <header class="hero">
-    <img class="hero__img" src="/wedding-site/assets/hero.png" alt="" />
-    <div class="hero__overlay">
-      <div class="hero__inner">
+<body>
 
-    <div class="hero__meta">
-    <div class="hero__names">Yannis &amp; Katerina</div>
-    <div class="hero__date">29.08.2026</div>
-  </div>
+  <!-- HERO: 2 στήλες στο desktop (εικόνα αριστερά / κείμενο δεξιά) -->
+  <header class="heroSplit">
 
-  <h1 class="hero__title">RSVP</h1>
-  <p class="hero__subtitle"></p>
-
-</div>
-
+    <!-- ΑΡΙΣΤΕΡΑ: Εικόνα -->
+    <div class="heroMedia">
+      <img class="heroImg" src="assets/hero.png" alt="Καλωσόρισμα" />
+      <div class="heroMeta">
+        <div class="heroNames">Yannis &amp; Katerina</div>
+        <div class="heroDate">29.08.2026</div>
+      </div>
     </div>
+
+    <!-- ΔΕΞΙΑ: Κείμενο -->
+    <div class="heroText">
+      <h1 class="heroTitle">RSVP</h1>
+      <p class="heroSubtitle">Επιβεβαίωση παρουσίας για τον γάμο μας</p>
+      <p class="heroHint">Συμπληρώστε τα στοιχεία σας παρακάτω.</p>
+    </div>
+
   </header>
 
   <main class="wrap">
@@ -39,8 +43,8 @@
       </div>
     </section>
 
-    <!-- PASSWORD GATE -->
-    <section class="panel" aria-label="Κωδικός εισόδου">
+    <!-- PASSWORD + FORM -->
+    <section class="panel" aria-label="RSVP">
       <div id="passwordBox" class="passwordBox">
         <p class="lead">Εισάγετε τον κωδικό από το προσκλητήριο</p>
         <div class="row">
@@ -50,9 +54,8 @@
         <p id="error" class="error" style="display:none;">Λάθος κωδικός</p>
       </div>
 
-      <!-- RSVP CONTENT -->
       <div id="rsvpContent" style="display:none;">
-        <form id="rsvpForm" class="form" action="https://formsubmit.co/kat.avramidou@gmail.com" method="POST">
+        <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
 
           <div class="grid2">
             <div class="field">
@@ -60,14 +63,12 @@
               <input class="input" type="text" name="Όνομα" placeholder="John Doe" required />
             </div>
 
-            <!-- email out of scope
             <div class="field">
               <label class="label">Email <span class="req">(required)</span></label>
               <input class="input" type="email" name="Email" placeholder="john.doe@example.com" required />
             </div>
           </div>
-           -->
-            
+
           <div class="field">
             <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">(required)</span></label>
             <div class="choices">
@@ -83,33 +84,33 @@
           </div>
 
           <div class="field">
-            <label class="label">Πόσα άτομα θα είστε; <span class="req">(required)</span></label>
+            <label class="label">Πόσα άτομα θα είστε;</label>
             <input class="input" id="guestsCount" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
+            <p class="help">Αν επιλέξετε “Όχι”, το πεδίο γίνεται αυτόματα 0.</p>
           </div>
 
           <div class="field">
-  <label class="label">Υπάρχουν παιδιά; <span class="req">(required)</span></label>
-  <div class="choices">
-    <label class="choice">
-      <input type="radio" name="Παιδιά" value="Όχι" checked />
-      <span>Όχι</span>
-    </label>
-    <label class="choice">
-      <input type="radio" name="Παιδιά" value="Ναι" />
-      <span>Ναι</span>
-    </label>
-  </div>
+            <label class="label">Υπάρχουν παιδιά; <span class="req">(required)</span></label>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Όχι" checked />
+                <span>Όχι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Ναι" />
+                <span>Ναι</span>
+              </label>
+            </div>
 
-  <div class="kids-ages">
-    <label class="label label--sub">Αν ναι, γράψτε τις ηλικίες</label>
-    <input class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-  </div>
-</div>
-
+            <div class="kids-ages">
+              <label class="label label--sub">Αν ναι, γράψτε ηλικίες</label>
+              <input class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+            </div>
+          </div>
 
           <div class="field">
             <label class="label">Σχόλια</label>
-            <textarea class="textarea" name="Σχόλια" rows="4" placeholder=""></textarea>
+            <textarea class="textarea" name="Σχόλια" rows="4"></textarea>
           </div>
 
           <input type="hidden" name="_subject" value="Νέο RSVP" />
@@ -119,9 +120,7 @@
           <button class="btn btn--wide" type="submit">Υποβολή</button>
         </form>
 
-        <p id="closed" class="error" style="display:none;">
-          Το RSVP έχει κλείσει.
-        </p>
+        <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
       </div>
     </section>
 
@@ -151,15 +150,31 @@
       }
     }
 
-    // ΠΑΙΔΙΑ (radio)
-    function syncKidsAges() {
-      const kidsYes = document.querySelector('input[name="Παιδιά"][value="Ναι"]').checked;
-      document.getElementById("kidsAges").style.display = kidsYes ? "block" : "none";
+    // ΑΝ Η ΠΑΡΟΥΣΙΑ ΕΙΝΑΙ ΟΧΙ -> ΑΤΟΜΑ = 0 (και κλειδώνει)
+    function syncGuestsCountWithAttendance(){
+      const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
+      const guests = document.getElementById("guestsCount");
+      if (!guests) return;
+
+      if (attendingNo) {
+        guests.value = "0";
+        guests.min = "0";
+        guests.max = "0";
+        guests.readOnly = true;
+        guests.classList.add("locked");
+      } else {
+        guests.min = "1";
+        guests.max = "10";
+        guests.readOnly = false;
+        guests.classList.remove("locked");
+        if (guests.value === "0") guests.value = "1";
+      }
     }
-    document.querySelectorAll('input[name="Παιδιά"]').forEach(el => {
-      el.addEventListener("change", syncKidsAges);
+
+    document.querySelectorAll('input[name="Παρουσία"]').forEach(el => {
+      el.addEventListener("change", syncGuestsCountWithAttendance);
     });
-    syncKidsAges();
+    syncGuestsCountWithAttendance();
 
     // ΚΛΕΙΔΩΜΑ RSVP
     const deadline = new Date("2026-07-10");
@@ -167,68 +182,7 @@
       document.getElementById("rsvpForm").style.display = "none";
       document.getElementById("closed").style.display = "block";
     }
-// ΚΛΕΙΔΩΜΑ "ΑΤΟΜΑ" ΑΝ Η ΠΑΡΟΥΣΙΑ ΕΙΝΑΙ ΟΧΙ
-function syncGuestsCountWithAttendance(){
-  const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
-  const guests = document.getElementById("guestsCount");
-
-  if (!guests) return;
-
-  if (attendingNo) {
-    guests.value = "1";
-    guests.min = "1";
-    guests.max = "1";
-    guests.readOnly = true;       // κλειδωμένο αλλά θα σταλεί στο form
-    guests.style.opacity = "0.75";
-    guests.style.cursor = "not-allowed";
-  } else {
-    guests.min = "1";
-    guests.max = "10";
-    guests.readOnly = false;
-    guests.style.opacity = "1";
-    guests.style.cursor = "auto";
-  }
-}
-
-// listener στα radio Παρουσία
-document.querySelectorAll('input[name="Παρουσία"]').forEach(el => {
-  el.addEventListener("change", syncGuestsCountWithAttendance);
-});
-
-// αρχικό sync
-syncGuestsCountWithAttendance();
-
-    // ΑΝ Η ΠΑΡΟΥΣΙΑ ΕΙΝΑΙ ΟΧΙ -> ΑΤΟΜΑ = 0
-function syncGuestsCountWithAttendance(){
-  const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
-  const guests = document.getElementById("guestsCount");
-  if (!guests) return;
-
-  if (attendingNo) {
-    guests.value = "0";
-    guests.min = "0";
-    guests.max = "0";
-    guests.readOnly = true;  // κλειδωμένο αλλά στέλνεται
-    guests.style.opacity = "0.70";
-    guests.style.cursor = "not-allowed";
-  } else {
-    guests.min = "1";
-    guests.max = "10";
-    guests.readOnly = false;
-    if (guests.value === "0") guests.value = "1"; // default όταν ξαναγυρίσουν στο Ναι
-    guests.style.opacity = "1";
-    guests.style.cursor = "auto";
-  }
-}
-
-document.querySelectorAll('input[name="Παρουσία"]').forEach(el => {
-  el.addEventListener("change", syncGuestsCountWithAttendance);
-});
-
-syncGuestsCountWithAttendance();
-
-    
   </script>
-    
+
 </body>
 </html>
