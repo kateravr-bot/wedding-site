@@ -9,7 +9,7 @@
 
 <body>
 
-  <!-- HERO: 2 στήλες στο desktop (εικόνα αριστερά / κείμενο δεξιά) -->
+  <!-- HERO: desktop 2 στήλες (εικόνα αριστερά, δεξιά RSVP + countdown + form) -->
   <header class="heroSplit">
 
     <!-- ΑΡΙΣΤΕΡΑ: Εικόνα -->
@@ -21,108 +21,111 @@
       </div>
     </div>
 
-    <!-- ΔΕΞΙΑ: Κείμενο -->
+    <!-- ΔΕΞΙΑ: RSVP πάνω + από κάτω countdown & form -->
     <div class="heroText">
       <h1 class="heroTitle">RSVP</h1>
+
+      <div class="heroRight">
+
+        <!-- COUNTDOWN -->
+        <section class="panel" aria-label="Αντίστροφη μέτρηση">
+          <h2 class="h2">Μετράμε αντίστροφα</h2>
+          <div id="countdown" class="countdown">
+            <div class="time"><span id="days">0</span><small>Ημέρες</small></div>
+            <div class="time"><span id="hours">0</span><small>Ώρες</small></div>
+            <div class="time"><span id="minutes">0</span><small>Λεπτά</small></div>
+            <div class="time"><span id="seconds">0</span><small>Δευτ.</small></div>
+          </div>
+        </section>
+
+        <!-- PASSWORD + FORM -->
+        <section class="panel" aria-label="RSVP">
+          <div id="passwordBox" class="passwordBox">
+            <p class="lead">Εισάγετε τον κωδικό από το προσκλητήριο</p>
+            <div class="row">
+              <input type="password" id="passwordInput" class="input" placeholder="Κωδικός" />
+              <button class="btn" type="button" onclick="checkPassword()">Είσοδος</button>
+            </div>
+            <p id="error" class="error" style="display:none;">Λάθος κωδικός</p>
+          </div>
+
+          <div id="rsvpContent" style="display:none;">
+            <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+
+              <div class="grid2">
+                <div class="field">
+                  <label class="label">Ονοματεπώνυμο <span class="req">(required)</span></label>
+                  <input class="input" type="text" name="Όνομα" placeholder="John Doe" required />
+                </div>
+
+                <div class="field">
+                  <label class="label">Email <span class="req">(required)</span></label>
+                  <input class="input" type="email" name="Email" placeholder="john.doe@example.com" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">(required)</span></label>
+                <div class="choices">
+                  <label class="choice">
+                    <input type="radio" name="Παρουσία" value="Ναι" required />
+                    <span>Ναι</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Παρουσία" value="Όχι" required />
+                    <span>Όχι</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Πόσα άτομα θα είστε;</label>
+                <input class="input" id="guestsCount" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
+                <p class="help">Αν επιλέξετε “Όχι”, το πεδίο γίνεται αυτόματα 0.</p>
+              </div>
+
+              <div class="field">
+                <label class="label">Υπάρχουν παιδιά; <span class="req">(required)</span></label>
+                <div class="choices">
+                  <label class="choice">
+                    <input type="radio" name="Παιδιά" value="Όχι" checked />
+                    <span>Όχι</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Παιδιά" value="Ναι" />
+                    <span>Ναι</span>
+                  </label>
+                </div>
+
+                <div class="kids-ages">
+                  <label class="label label--sub">Αν ναι, γράψτε ηλικίες</label>
+                  <input class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Σχόλια</label>
+                <textarea class="textarea" name="Σχόλια" rows="4"></textarea>
+              </div>
+
+              <input type="hidden" name="_subject" value="Νέο RSVP" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
+
+              <button class="btn btn--wide" type="submit">Υποβολή</button>
+            </form>
+
+            <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
+          </div>
+        </section>
+
+      </div>
     </div>
 
   </header>
 
-  <main class="wrap">
-
-    <!-- COUNTDOWN -->
-    <section class="panel" aria-label="Αντίστροφη μέτρηση">
-      <h2 class="h2">Μετράμε αντίστροφα</h2>
-      <div id="countdown" class="countdown">
-        <div class="time"><span id="days">0</span><small>Ημέρες</small></div>
-        <div class="time"><span id="hours">0</span><small>Ώρες</small></div>
-        <div class="time"><span id="minutes">0</span><small>Λεπτά</small></div>
-        <div class="time"><span id="seconds">0</span><small>Δευτ.</small></div>
-      </div>
-    </section>
-
-    <!-- PASSWORD + FORM -->
-    <section class="panel" aria-label="RSVP">
-      <div id="passwordBox" class="passwordBox">
-        <p class="lead">Εισάγετε τον κωδικό από το προσκλητήριο</p>
-        <div class="row">
-          <input type="password" id="passwordInput" class="input" placeholder="Κωδικός" />
-          <button class="btn" type="button" onclick="checkPassword()">Είσοδος</button>
-        </div>
-        <p id="error" class="error" style="display:none;">Λάθος κωδικός</p>
-      </div>
-
-      <div id="rsvpContent" style="display:none;">
-        <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-
-          <div class="grid2">
-            <div class="field">
-              <label class="label">Ονοματεπώνυμο <span class="req">(required)</span></label>
-              <input class="input" type="text" name="Όνομα" placeholder="John Doe" required />
-            </div>
-
-            <div class="field">
-              <label class="label">Email <span class="req">(required)</span></label>
-              <input class="input" type="email" name="Email" placeholder="john.doe@example.com" required />
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">(required)</span></label>
-            <div class="choices">
-              <label class="choice">
-                <input type="radio" name="Παρουσία" value="Ναι" required />
-                <span>Ναι</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="Παρουσία" value="Όχι" required />
-                <span>Όχι</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Πόσα άτομα θα είστε;</label>
-            <input class="input" id="guestsCount" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-            <p class="help">Αν επιλέξετε “Όχι”, το πεδίο γίνεται αυτόματα 0.</p>
-          </div>
-
-          <div class="field">
-            <label class="label">Υπάρχουν παιδιά; <span class="req">(required)</span></label>
-            <div class="choices">
-              <label class="choice">
-                <input type="radio" name="Παιδιά" value="Όχι" checked />
-                <span>Όχι</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="Παιδιά" value="Ναι" />
-                <span>Ναι</span>
-              </label>
-            </div>
-
-            <div class="kids-ages">
-              <label class="label label--sub">Αν ναι, γράψτε ηλικίες</label>
-              <input class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Σχόλια</label>
-            <textarea class="textarea" name="Σχόλια" rows="4"></textarea>
-          </div>
-
-          <input type="hidden" name="_subject" value="Νέο RSVP" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
-
-          <button class="btn btn--wide" type="submit">Υποβολή</button>
-        </form>
-
-        <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
-      </div>
-    </section>
-
-  </main>
+  <!-- (προαιρετικό) χώρος για μελλοντικές ενότητες -->
+  <main class="wrap"></main>
 
   <script>
     // COUNTDOWN
