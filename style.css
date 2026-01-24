@@ -328,26 +328,3 @@ body{
   color: #b00020;
   font-weight: 800;
 }
-/* FORCE MOBILE LOOK ON DESKTOP */
-.device{
-  width: min(480px, 100vw);     /* “mobile” πλάτος */
-  margin: 0 auto;              /* κέντρο στην οθόνη */
-  min-height: 100vh;
-  background: var(--bg);
-}
-
-/* Στον υπολογιστή δίνουμε “φόντο” γύρω από το mobile canvas */
-@media (min-width: 900px){
-  body{
-    background: #0f0f0f;        /* περιβάλλον γύρω από το “κινητό” */
-  }
-
-  .device{
-    margin: 24px auto;
-    border: 2px solid #000;
-    border-radius: 18px;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.45);
-    overflow: hidden;          /* να κόβει σωστά στις στρογγυλές γωνίες */
-  }
-}
-
