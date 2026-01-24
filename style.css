@@ -19,7 +19,7 @@ body{
 }
 
 /* -------------------------
-   HERO SPLIT (mobile: stack, desktop: 2 columns)
+   HERO SPLIT
 -------------------------- */
 .heroSplit{
   width: 100%;
@@ -83,14 +83,14 @@ body{
   filter: drop-shadow(0 8px 18px rgba(0,0,0,0.25));
 }
 
-/* Right text */
+/* Right side */
 .heroText{
-  padding: 22px 16px 26px;
+  padding: 18px 14px 18px;
   background: var(--bg);
 }
 
 .heroTitle{
-  margin: 0;
+  margin: 0 0 12px 0;
   font-family: "Roboto Slab", serif;
   font-weight: 600; /* λιγότερο bold */
   font-size: clamp(54px, 7vw, 96px);
@@ -106,24 +106,17 @@ body{
     0 20px 45px rgba(0,0,0,0.18);
 }
 
-.heroSubtitle{
-  margin: 10px 0 0;
-  font-weight: 700;
-  font-size: 18px;
-  color: rgba(0,0,0,0.85);
+/* container for countdown+form */
+.heroRight{
+  display: grid;
+  gap: 18px;
 }
 
-.heroHint{
-  margin: 10px 0 0;
-  font-weight: 600;
-  color: rgba(0,0,0,0.70);
-}
-
-/* Desktop: two columns, image fixed height (no page scroll just for hero) */
+/* Desktop: 2 columns and right side scroll if needed */
 @media (min-width: 900px){
   .heroSplit{
-    grid-template-columns: 1.1fr 0.9fr; /* εικόνα λίγο πιο μεγάλη */
-    min-height: 68vh;
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height: 92vh;
   }
 
   .heroMedia{
@@ -134,23 +127,26 @@ body{
   .heroImg{
     width: 100%;
     height: 100%;
-    object-fit: cover;          /* ωραίο desktop “hero” */
-    object-position: 50% 25%;   /* ρύθμισε 25%→10% (πιο πάνω) ή 40% (πιο κάτω) */
+    object-fit: cover;
+    object-position: 50% 25%; /* ρύθμισε 25%→10% (πιο πάνω) ή 40% (πιο κάτω) */
   }
 
   .heroText{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 34px 34px 34px;
+    justify-content: flex-start; /* RSVP ψηλά */
+    align-items: flex-start;
+    padding: 22px 22px 22px;
   }
 
   .heroTitle{
-    font-size: clamp(64px, 5vw, 110px);
+    font-size: clamp(72px, 5vw, 120px);
   }
 
-  .heroSubtitle{
-    font-size: 20px;
+  .heroRight{
+    width: 100%;
+    overflow: auto; /* αν δεν χωράει, κάνει scroll μόνο στη δεξιά στήλη */
+    padding-right: 2px;
   }
 }
 
@@ -159,15 +155,16 @@ body{
 }
 
 /* -------------------------
-   MAIN LAYOUT
+   (optional) main wrapper
 -------------------------- */
 .wrap{
   width: min(1100px, 92vw);
   margin: 26px auto 64px;
-  display: grid;
-  gap: 22px;
 }
 
+/* -------------------------
+   PANELS / TYPO / FORM
+-------------------------- */
 .panel{
   border: var(--border);
   border-radius: var(--radius);
@@ -175,7 +172,6 @@ body{
   padding: 22px;
 }
 
-/* TYPO */
 .h2{
   margin:0 0 16px;
   font-size: 22px;
@@ -237,9 +233,7 @@ body{
   gap: 18px;
 }
 @media (min-width: 900px){
-  .grid2{
-    grid-template-columns: 1fr 1fr; /* στο desktop γίνεται 2 στήλες */
-  }
+  .grid2{ grid-template-columns: 1fr 1fr; }
 }
 
 .field{ margin: 0 0 16px; }
@@ -291,7 +285,6 @@ body{
   min-height: 110px;
 }
 
-/* locked guests input */
 .locked{
   opacity: 0.70;
   cursor: not-allowed;
@@ -335,7 +328,7 @@ body{
   background: #ffffff;
   color: var(--ink);
   font-weight: 800;
-  font-size: 20px; /* μεγαλύτερα γράμματα (Υποβολή/Είσοδος) */
+  font-size: 20px; /* μεγαλύτερα γράμματα */
   padding: 14px 18px;
   cursor: pointer;
   transition: transform .08s ease, box-shadow .08s ease;
