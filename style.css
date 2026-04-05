@@ -104,8 +104,10 @@ body{
   letter-spacing: 0.5px;
   line-height: 0.95;
 
-  color: #FFD400;
-  -webkit-text-stroke: 4px #000;
+  color: #000000; <!-- BLACK RSVP -->
+  -webkit-text-stroke: 0px transparent;
+  <!-- color: #FFD400;
+  -webkit-text-stroke: 4px #000;-->
   paint-order: stroke fill;
 
   text-shadow:
