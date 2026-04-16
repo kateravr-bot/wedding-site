@@ -1,27 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Slab:wght@400;500;600;700&family=Great+Vibes&family=Allura&family=Cormorant+Garamond:wght@500;600;700&family=Cinzel:wght@400;500;600&display=swap');
 
 :root{
-  --bg: #e8e6e3;
+  --bg: #f6f0e4;
   --ink: #111111;
   --muted: rgba(17,17,17,0.55);
-  --panel: rgba(255,255,255,0.10);
+  --panel: rgba(255,255,255,0.14);
   --border: 2px solid var(--ink);
   --radius: 14px;
+
   --marble-bg:
-    radial-gradient(circle at 18% 16%, rgba(206, 224, 235, 0.55) 0%, rgba(206, 224, 235, 0) 32%),
-    radial-gradient(circle at 82% 14%, rgba(219, 205, 176, 0.42) 0%, rgba(219, 205, 176, 0) 30%),
-    radial-gradient(circle at 24% 78%, rgba(240, 237, 232, 0.92) 0%, rgba(240, 237, 232, 0) 34%),
-    radial-gradient(circle at 88% 84%, rgba(199, 213, 226, 0.35) 0%, rgba(199, 213, 226, 0) 28%),
-    linear-gradient(135deg, #f5f4f1 0%, #e6e1d8 24%, #d9dce1 47%, #efe9dc 72%, #dce7ef 100%);
+    radial-gradient(circle at 16% 14%, rgba(255, 251, 241, 0.88) 0%, rgba(255, 251, 241, 0) 28%),
+    radial-gradient(circle at 84% 12%, rgba(223, 197, 134, 0.16) 0%, rgba(223, 197, 134, 0) 26%),
+    radial-gradient(circle at 22% 76%, rgba(255, 248, 232, 0.80) 0%, rgba(255, 248, 232, 0) 30%),
+    radial-gradient(circle at 86% 82%, rgba(236, 218, 171, 0.14) 0%, rgba(236, 218, 171, 0) 24%),
+    radial-gradient(circle at 58% 42%, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0) 22%),
+    linear-gradient(135deg, #fbf8f1 0%, #f6f0e4 24%, #efe6d2 48%, #faf5ea 72%, #f1e6cc 100%);
 }
 
 *{ box-sizing:border-box; }
 
+html, body{
+  min-height: 100%;
+}
+
 body{
   margin:0;
+  position: relative;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--marble-bg);
   color: var(--ink);
+}
+
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(201, 162, 39, 0.22) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 27% 70%, rgba(212, 175, 55, 0.18) 0 1.1px, transparent 1.3px),
+    radial-gradient(circle at 36% 22%, rgba(255, 255, 255, 0.30) 0 0.9px, transparent 1.1px),
+    radial-gradient(circle at 46% 56%, rgba(201, 162, 39, 0.16) 0 1.1px, transparent 1.3px),
+    radial-gradient(circle at 58% 16%, rgba(255, 255, 255, 0.36) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 67% 38%, rgba(212, 175, 55, 0.15) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 74% 68%, rgba(255, 255, 255, 0.34) 0 0.9px, transparent 1.1px),
+    radial-gradient(circle at 82% 24%, rgba(201, 162, 39, 0.20) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 90% 78%, rgba(212, 175, 55, 0.16) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 14% 86%, rgba(255, 255, 255, 0.32) 0 0.9px, transparent 1.1px),
+    radial-gradient(circle at 62% 84%, rgba(201, 162, 39, 0.14) 0 1px, transparent 1.2px);
 }
 
 /* -------------------------
@@ -32,6 +61,8 @@ body{
   border-bottom: var(--border);
   display: grid;
   grid-template-columns: 1fr;
+  position: relative;
+  z-index: 1;
 }
 
 /* Left media */
@@ -65,7 +96,7 @@ body{
   line-height: 1.0;
   letter-spacing: 0.6px;
 
-  background: linear-gradient(135deg, #f7f5f1 0%, #d6c3a0 38%, #b7c7d7 68%, #ece7df 100%);
+  background: linear-gradient(135deg, #fbf8f1 0%, #d8bea0 38%, #b89a58 68%, #f0e8d8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -81,7 +112,7 @@ body{
   font-size: clamp(17px, 2.6vw, 34px);
   letter-spacing: 2px;
 
-  background: linear-gradient(135deg, #f1ece3 0%, #c7ad7e 45%, #c0d0df 100%);
+  background: linear-gradient(135deg, #f5efe2 0%, #ccb07a 45%, #efe4cb 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -99,15 +130,13 @@ body{
 .heroTitle{
   margin: 0 0 12px 0;
   font-family: "Roboto Slab", serif;
-  font-weight: 600; /* Î»Î¹Î³ÏŒÏ„ÎµÏÎ¿ bold */
+  font-weight: 600;
   font-size: clamp(54px, 7vw, 96px);
   letter-spacing: 0.5px;
   line-height: 0.95;
 
-  color: #C9A227; <!-- χρυσό RSVP -->
+  color: #c9a227;
   -webkit-text-stroke: 0px transparent;
-  <!-- color: #FFD400;
-  -webkit-text-stroke: 4px #000;-->
   paint-order: stroke fill;
 
   text-shadow:
@@ -137,13 +166,13 @@ body{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 25%; /* ÏÏÎ¸Î¼Î¹ÏƒÎµ 25%â†’10% (Ï€Î¹Î¿ Ï€Î¬Î½Ï‰) Î® 40% (Ï€Î¹Î¿ ÎºÎ¬Ï„Ï‰) */
+    object-position: 50% 25%;
   }
 
   .heroText{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* RSVP ÏˆÎ·Î»Î¬ */
+    justify-content: flex-start;
     align-items: flex-start;
     padding: 22px 22px 22px;
   }
@@ -154,7 +183,7 @@ body{
 
   .heroRight{
     width: 100%;
-    overflow: auto; /* Î±Î½ Î´ÎµÎ½ Ï‡Ï‰ÏÎ¬ÎµÎ¹, ÎºÎ¬Î½ÎµÎ¹ scroll Î¼ÏŒÎ½Î¿ ÏƒÏ„Î· Î´ÎµÎ¾Î¹Î¬ ÏƒÏ„Î®Î»Î· */
+    overflow: auto;
     padding-right: 2px;
   }
 }
@@ -169,6 +198,8 @@ body{
 .wrap{
   width: min(1100px, 92vw);
   margin: 26px auto 64px;
+  position: relative;
+  z-index: 1;
 }
 
 /* -------------------------
@@ -179,6 +210,8 @@ body{
   border-radius: var(--radius);
   background: var(--panel);
   padding: 22px;
+  position: relative;
+  z-index: 1;
 }
 
 .h2{
@@ -205,7 +238,7 @@ body{
   border-radius: var(--radius);
   padding: 14px 16px;
   min-width: 130px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.10);
 }
 
 .time span{
@@ -238,7 +271,7 @@ body{
 
 .grid2{
   display:grid;
-  grid-template-columns: 1fr; /* mobile-first */
+  grid-template-columns: 1fr;
   gap: 18px;
 }
 @media (min-width: 900px){
@@ -274,7 +307,7 @@ body{
   border: var(--border);
   border-radius: var(--radius);
   padding: 14px 14px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.10);
   color: var(--ink);
   font-size: 16px;
   outline: none;
@@ -337,7 +370,7 @@ body{
   background: #ffffff;
   color: var(--ink);
   font-weight: 800;
-  font-size: 20px; /* Î¼ÎµÎ³Î±Î»ÏÏ„ÎµÏÎ± Î³ÏÎ¬Î¼Î¼Î±Ï„Î± */
+  font-size: 20px;
   padding: 14px 18px;
   cursor: pointer;
   transition: transform .08s ease, box-shadow .08s ease;
