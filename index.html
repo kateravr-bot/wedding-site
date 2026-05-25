@@ -9,21 +9,21 @@
 
 <body>
   <main class="rsvpPage" aria-label="RSVP γάμου">
-    <section class="imageSide" aria-label="Εικόνα RSVP">
-      <img class="rsvpImage" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
+    <section class="photoSide" aria-label="Εικόνα RSVP">
+      <img class="photoSide__img" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
     </section>
 
     <section class="formSide" aria-label="Φόρμα RSVP">
-      <div class="formCard">
+      <div class="formShell" id="formShell">
         <form id="rsvpForm" class="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
           <div class="field">
             <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
             <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
           </div>
 
-          <div class="field">
-            <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">*</span></label>
-            <div class="choices">
+          <fieldset class="field fieldset">
+            <legend class="label">Θα παρευρεθείτε; <span class="req">*</span></legend>
+            <div class="choices choices--two">
               <label class="choice">
                 <input type="radio" name="Παρουσία" value="Ναι" required />
                 <span>Ναι</span>
@@ -33,16 +33,16 @@
                 <span>Όχι</span>
               </label>
             </div>
-          </div>
+          </fieldset>
 
           <div class="field">
-            <label class="label" for="guestsCount">Πόσα άτομα θα είστε;</label>
+            <label class="label" for="guestsCount">Άτομα</label>
             <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
           </div>
 
-          <div class="field">
-            <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
-            <div class="choices">
+          <fieldset class="field fieldset">
+            <legend class="label">Παιδιά; <span class="req">*</span></legend>
+            <div class="choices choices--two">
               <label class="choice">
                 <input type="radio" name="Παιδιά" value="Όχι" checked />
                 <span>Όχι</span>
@@ -52,14 +52,14 @@
                 <span>Ναι</span>
               </label>
             </div>
-          </div>
+          </fieldset>
 
-          <div class="field optionalField">
-            <label class="label" for="kidsAges">Ηλικίες παιδιών, αν υπάρχουν</label>
+          <div class="field">
+            <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
             <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
           </div>
 
-          <div class="field optionalField commentsField">
+          <div class="field field--comments">
             <label class="label" for="comments">Σχόλια</label>
             <textarea id="comments" class="textarea" name="Σχόλια" rows="2"></textarea>
           </div>
@@ -111,6 +111,28 @@
         closed.hidden = false;
       }
     }
+
+    /* Ensures the form remains inside the right side without any scroll,
+       even on short mobile screens. */
+    function fitFormToScreen() {
+      const side = document.querySelector(".formSide");
+      const shell = document.getElementById("formShell");
+      if (!side || !shell) return;
+
+      shell.style.transform = "scale(1)";
+      const sideRect = side.getBoundingClientRect();
+      const shellRect = shell.getBoundingClientRect();
+
+      const availableWidth = Math.max(1, sideRect.width - 12);
+      const availableHeight = Math.max(1, sideRect.height - 12);
+      const scale = Math.min(1, availableWidth / shellRect.width, availableHeight / shellRect.height);
+
+      shell.style.setProperty("--fit-scale", String(Math.max(0.72, scale)));
+    }
+
+    window.addEventListener("load", fitFormToScreen);
+    window.addEventListener("resize", fitFormToScreen);
+    window.addEventListener("orientationchange", () => setTimeout(fitFormToScreen, 250));
   </script>
 </body>
 </html>
