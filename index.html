@@ -4,78 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>RSVP Γάμος</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260525-final" />
 </head>
 
 <body>
-  <main class="rsvpPage" aria-label="RSVP γάμου">
-    <!-- Αριστερά: μόνο η εικόνα, χωρίς περιθώρια -->
-    <section class="imageSide" aria-label="Εικόνα RSVP">
-      <img class="rsvpImage" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
+  <main class="heroSplit" aria-label="RSVP γάμου">
+    <section class="heroMedia" aria-label="Εικόνα RSVP">
+      <img class="heroImg" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
     </section>
 
-    <!-- Δεξιά: φόρμα RSVP -->
-    <section class="formSide" aria-label="Φόρμα RSVP">
-      <div class="formFit" id="formFit">
-        <section class="formCard" id="formCard">
-          <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-            <div class="field">
-              <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
-              <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
+    <section class="heroText" aria-label="Φόρμα RSVP">
+      <div class="heroRight">
+        <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+          <div class="field">
+            <label class="label" for="fullName">Ονοματεπώνυμο <span class="req">*</span></label>
+            <input id="fullName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
+            <div class="choices" role="radiogroup" aria-label="Παρουσία">
+              <label class="choice">
+                <input type="radio" name="Παρουσία" value="Ναι" required />
+                <span>Ναι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παρουσία" value="Όχι" required />
+                <span>Όχι</span>
+              </label>
             </div>
+          </div>
 
-            <div class="field">
-              <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
-              <div class="choices twoCols">
-                <label class="choice">
-                  <input type="radio" name="Παρουσία" value="Ναι" required />
-                  <span>Ναι</span>
-                </label>
-                <label class="choice">
-                  <input type="radio" name="Παρουσία" value="Όχι" required />
-                  <span>Όχι</span>
-                </label>
-              </div>
+          <div class="field">
+            <label class="label" for="guestsCount">Άτομα</label>
+            <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" value="1" />
+          </div>
+
+          <div class="field">
+            <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
+            <div class="choices" role="radiogroup" aria-label="Παιδιά">
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Όχι" checked />
+                <span>Όχι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Ναι" />
+                <span>Ναι</span>
+              </label>
             </div>
+          </div>
 
-            <div class="field">
-              <label class="label" for="guestsCount">Άτομα</label>
-              <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-            </div>
+          <div class="field">
+            <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
+            <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+          </div>
 
-            <div class="field">
-              <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
-              <div class="choices twoCols">
-                <label class="choice">
-                  <input type="radio" name="Παιδιά" value="Όχι" checked />
-                  <span>Όχι</span>
-                </label>
-                <label class="choice">
-                  <input type="radio" name="Παιδιά" value="Ναι" />
-                  <span>Ναι</span>
-                </label>
-              </div>
-            </div>
+          <div class="field field--comments">
+            <label class="label" for="comments">Σχόλια</label>
+            <textarea id="comments" class="textarea" name="Σχόλια" rows="3"></textarea>
+          </div>
 
-            <div class="field">
-              <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
-              <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-            </div>
+          <input type="hidden" name="_subject" value="Νέο RSVP" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
 
-            <div class="field commentsField">
-              <label class="label" for="comments">Σχόλια</label>
-              <textarea id="comments" class="textarea" name="Σχόλια" rows="3"></textarea>
-            </div>
+          <button class="btn" type="submit">Υποβολή</button>
+        </form>
 
-            <input type="hidden" name="_subject" value="Νέο RSVP" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
-
-            <button class="btn" type="submit">Υποβολή</button>
-          </form>
-
-          <p id="closed" class="closed" style="display:none;">Το RSVP έχει κλείσει.</p>
-        </section>
+        <p id="closed" class="error" hidden>Το RSVP έχει κλείσει.</p>
       </div>
     </section>
   </main>
@@ -111,34 +107,10 @@
       const form = document.getElementById("rsvpForm");
       const closed = document.getElementById("closed");
       if (form && closed) {
-        form.style.display = "none";
-        closed.style.display = "block";
+        form.hidden = true;
+        closed.hidden = false;
       }
     }
-
-    // Κρατά τη φόρμα μέσα στη δεξιά πλευρά χωρίς να ενεργοποιείται scroll.
-    // Σε πολύ μικρές οθόνες τη μικραίνει αναλογικά, αλλά δεν αλλάζει ποτέ διάταξη.
-    function fitFormToScreen() {
-      const side = document.querySelector(".formSide");
-      const fit = document.getElementById("formFit");
-      const card = document.getElementById("formCard");
-      if (!side || !fit || !card) return;
-
-      fit.style.transform = "scale(1)";
-      fit.style.width = "430px";
-
-      const availableWidth = side.clientWidth - 16;
-      const availableHeight = side.clientHeight - 16;
-      const cardWidth = card.offsetWidth;
-      const cardHeight = card.offsetHeight;
-
-      const scale = Math.min(1, availableWidth / cardWidth, availableHeight / cardHeight);
-      fit.style.transform = `scale(${Math.max(scale, 0.48)})`;
-    }
-
-    window.addEventListener("load", fitFormToScreen);
-    window.addEventListener("resize", fitFormToScreen);
-    window.addEventListener("orientationchange", () => setTimeout(fitFormToScreen, 250));
   </script>
 </body>
 </html>
