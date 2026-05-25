@@ -2,71 +2,332 @@
 <html lang="el">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RSVP Γάμος</title>
   <link rel="stylesheet" href="style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #fbf7f1;
+      --panel: rgba(255, 255, 255, 0.86);
+      --text: #33281f;
+      --muted: #7a6b5e;
+      --line: rgba(70, 53, 39, 0.16);
+      --accent: #9a7a42;
+      --accent-dark: #73572c;
+      --shadow: 0 22px 70px rgba(52, 35, 20, 0.12);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body {
+      min-height: 100svh;
+    }
+
+    .heroSplit {
+      width: 100%;
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(390px, 520px);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(232, 205, 133, 0.14), transparent 32%),
+        linear-gradient(135deg, #fbf8f3 0%, #f3eadf 100%);
+    }
+
+    .heroMedia {
+      position: relative;
+      min-width: 0;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(18px, 3vw, 44px);
+      border-right: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .heroImg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 900px;
+      max-height: calc(100svh - clamp(36px, 6vw, 88px));
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 22px 44px rgba(70, 45, 25, 0.12));
+    }
+
+    .heroMeta {
+      display: none;
+    }
+
+    .heroText {
+      min-width: 0;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(18px, 2.4vw, 40px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .heroRight {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .panel {
+      width: 100%;
+      padding: clamp(20px, 3vw, 34px);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .label {
+      font-size: 0.98rem;
+      line-height: 1.35;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .label--sub {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .req,
+    .help {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .help {
+      margin: 2px 0 0;
+      line-height: 1.35;
+    }
+
+    .input,
+    .textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text);
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1.35;
+      outline: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .input {
+      min-height: 48px;
+      padding: 0 14px;
+    }
+
+    .textarea {
+      min-height: 112px;
+      resize: vertical;
+      padding: 13px 14px;
+    }
+
+    .input:focus,
+    .textarea:focus {
+      border-color: rgba(154, 122, 66, 0.6);
+      box-shadow: 0 0 0 4px rgba(154, 122, 66, 0.12);
+      background: #fff;
+    }
+
+    .input.locked {
+      background: rgba(236, 229, 220, 0.72);
+      color: var(--muted);
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.76);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .choice input {
+      accent-color: var(--accent);
+    }
+
+    .kids-ages {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      color: #fff;
+      font: inherit;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(115, 87, 44, 0.2);
+      transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(115, 87, 44, 0.24);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      opacity: 0.94;
+    }
+
+    .error {
+      color: #8b2d20;
+      margin: 14px 0 0;
+      line-height: 1.45;
+    }
+
+    .wrap {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .heroSplit {
+        grid-template-columns: 1fr;
+        min-height: 100svh;
+      }
+
+      .heroMedia {
+        min-height: 38svh;
+        height: 38svh;
+        padding: 16px 16px 8px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .heroImg {
+        max-height: 100%;
+        max-width: 100%;
+      }
+
+      .heroText {
+        min-height: 62svh;
+        align-items: flex-start;
+        padding: 14px 14px 22px;
+        overflow-y: visible;
+      }
+
+      .heroRight {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .panel {
+        border-radius: 22px;
+        padding: 18px;
+      }
+
+      .form {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .heroMedia {
+        height: 34svh;
+        min-height: 34svh;
+      }
+
+      .heroText {
+        min-height: 66svh;
+        padding: 12px 12px 20px;
+      }
+
+      .panel {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .choices {
+        gap: 8px;
+      }
+
+      .choice,
+      .input {
+        min-height: 46px;
+      }
+
+      .textarea {
+        min-height: 96px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- HERO: desktop 2 στήλες (εικόνα αριστερά, δεξιά RSVP + countdown + form) -->
   <header class="heroSplit">
-
-    <!-- ΑΡΙΣΤΕΡΑ: Εικόνα -->
-    <div class="heroMedia">
-      <img class="heroImg" src="assets/finale_rsvp1.png" alt="Καλωσόρισμα" />
-      <div class="heroMeta">
-   <!--     <div class="heroNames">Yannis &amp; Katerina</div>
-        <div class="heroDate">29.08.2026</div> -->
-      </div>
+    <div class="heroMedia" aria-label="Εικόνα πρόσκλησης RSVP">
+      <img class="heroImg" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
+      <div class="heroMeta"></div>
     </div>
 
-    <!-- ΔΕΞΙΑ: RSVP πάνω + από κάτω countdown & form -->
     <div class="heroText">
-  <!--    <h1 class="heroTitle">Επιβεβαίωση παρουσίας</h1> -->
-
       <div class="heroRight">
-
-        <!-- COUNTDOWN -->
-        <section class="panel" aria-label="Αντίστροφη μέτρηση">
-          <h2 class="h2">Μετράμε αντίστροφα</h2>
-          <div id="countdown" class="countdown">
-            <div class="time"><span id="days">0</span><small>Ημέρες</small></div>
-            <div class="time"><span id="hours">0</span><small>Ώρες</small></div>
-            <div class="time"><span id="minutes">0</span><small>Λεπτά</small></div>
-            <div class="time"><span id="seconds">0</span><small>Δευτ.</small></div>
-          </div>
-        </section>
-
-        <!-- PASSWORD + FORM -->
-        <!--  <section class="panel" aria-label="RSVP">
-          <div id="passwordBox" class="passwordBox">
-            <p class="lead">Εισάγετε τον κωδικό από το προσκλητήριο</p>
-            <div class="row">
-              <input type="password" id="passwordInput" class="input" placeholder="Κωδικός" />
-              <button class="btn" type="button" onclick="checkPassword()">Είσοδος</button>
-            </div>
-            <p id="error" class="error" style="display:none;">Λάθος κωδικός</p>
-          </div>
--->
-      
-          <div id="rsvpContent"
+        <section class="panel" aria-label="Φόρμα RSVP">
+          <div id="rsvpContent">
             <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-
-              <div class="grid2">
-                <div class="field">
-                  <label class="label">Ονοματεπώνυμο <span class="req">(required)</span></label>
-                  <input class="input" type="text" name="Όνομα" placeholder="John Doe" required />
-                </div>
-<!-- email ektos
-                <div class="field">
-                  <label class="label">Email <span class="req">(required)</span></label>
-                  <input class="input" type="email" name="Email" placeholder="john.doe@example.com" required />
-                </div>
-              </div>
- -->
               <div class="field">
-                <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">(required)</span></label>
+                <label class="label">Ονοματεπώνυμο <span class="req">(υποχρεωτικό)</span></label>
+                <input class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
+              </div>
+
+              <div class="field">
+                <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">(υποχρεωτικό)</span></label>
                 <div class="choices">
                   <label class="choice">
                     <input type="radio" name="Παρουσία" value="Ναι" required />
@@ -82,11 +343,11 @@
               <div class="field">
                 <label class="label">Πόσα άτομα θα είστε;</label>
                 <input class="input" id="guestsCount" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-                <p class="help">Αν επιλέξετε “Όχι”, το πεδίο γίνεται αυτόματα 0.</p>
+                <p class="help">Αν επιλέξετε «Όχι», το πεδίο γίνεται αυτόματα 0.</p>
               </div>
 
               <div class="field">
-                <label class="label">Υπάρχουν παιδιά; <span class="req">(required)</span></label>
+                <label class="label">Υπάρχουν παιδιά; <span class="req">(υποχρεωτικό)</span></label>
                 <div class="choices">
                   <label class="choice">
                     <input type="radio" name="Παιδιά" value="Όχι" checked />
@@ -119,43 +380,12 @@
             <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
           </div>
         </section>
-
       </div>
     </div>
-
   </header>
 
-  <!-- (προαιρετικό) χώρος για μελλοντικές ενότητες -->
-  <main class="wrap"></main>
-
   <script>
-    // COUNTDOWN
-    const weddingDate = new Date("2026-06-20T18:30:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
-      if (diff < 0) return;
-      document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-      document.getElementById("hours").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      document.getElementById("minutes").innerText = Math.floor((diff / (1000 * 60)) % 60);
-      document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
-    }, 1000);
-
-    /* anenergo to password ths formas
-    // PASSWORD
-    const correctPassword = "LOVE2026";
-    function checkPassword() {
-      if (document.getElementById("passwordInput").value === correctPassword) {
-        document.getElementById("passwordBox").style.display = "none";
-        document.getElementById("rsvpContent").style.display = "block";
-      } else {
-        document.getElementById("error").style.display = "block";
-      }
-    }
-    */
-
-    // ΑΝ Η ΠΑΡΟΥΣΙΑ ΕΙΝΑΙ ΟΧΙ -> ΑΤΟΜΑ = 0 (και κλειδώνει)
-    function syncGuestsCountWithAttendance(){
+    function syncGuestsCountWithAttendance() {
       const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
       const guests = document.getElementById("guestsCount");
       if (!guests) return;
@@ -175,18 +405,20 @@
       }
     }
 
-    document.querySelectorAll('input[name="Παρουσία"]').forEach(el => {
+    document.querySelectorAll('input[name="Παρουσία"]').forEach((el) => {
       el.addEventListener("change", syncGuestsCountWithAttendance);
     });
     syncGuestsCountWithAttendance();
 
-    // ΚΛΕΙΔΩΜΑ RSVP
-    const deadline = new Date("2026-07-10");
+    const deadline = new Date("2026-07-10T23:59:59");
     if (new Date() > deadline) {
-      document.getElementById("rsvpForm").style.display = "none";
-      document.getElementById("closed").style.display = "block";
+      const form = document.getElementById("rsvpForm");
+      const closed = document.getElementById("closed");
+      if (form && closed) {
+        form.style.display = "none";
+        closed.style.display = "block";
+      }
     }
   </script>
-
 </body>
 </html>
