@@ -9,69 +9,73 @@
 
 <body>
   <main class="rsvpPage" aria-label="RSVP γάμου">
-    <section class="photoSide" aria-label="Εικόνα RSVP">
-      <img class="photoSide__img" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
+    <!-- Αριστερά: μόνο η εικόνα, χωρίς περιθώρια -->
+    <section class="imageSide" aria-label="Εικόνα RSVP">
+      <img class="rsvpImage" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
     </section>
 
+    <!-- Δεξιά: φόρμα RSVP -->
     <section class="formSide" aria-label="Φόρμα RSVP">
-      <div class="formShell" id="formShell">
-        <form id="rsvpForm" class="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-          <div class="field">
-            <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
-            <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
-          </div>
-
-          <fieldset class="field fieldset">
-            <legend class="label">Θα παρευρεθείτε; <span class="req">*</span></legend>
-            <div class="choices choices--two">
-              <label class="choice">
-                <input type="radio" name="Παρουσία" value="Ναι" required />
-                <span>Ναι</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="Παρουσία" value="Όχι" required />
-                <span>Όχι</span>
-              </label>
+      <div class="formFit" id="formFit">
+        <section class="formCard" id="formCard">
+          <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+            <div class="field">
+              <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
+              <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
             </div>
-          </fieldset>
 
-          <div class="field">
-            <label class="label" for="guestsCount">Άτομα</label>
-            <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-          </div>
-
-          <fieldset class="field fieldset">
-            <legend class="label">Παιδιά; <span class="req">*</span></legend>
-            <div class="choices choices--two">
-              <label class="choice">
-                <input type="radio" name="Παιδιά" value="Όχι" checked />
-                <span>Όχι</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="Παιδιά" value="Ναι" />
-                <span>Ναι</span>
-              </label>
+            <div class="field">
+              <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
+              <div class="choices twoCols">
+                <label class="choice">
+                  <input type="radio" name="Παρουσία" value="Ναι" required />
+                  <span>Ναι</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="Παρουσία" value="Όχι" required />
+                  <span>Όχι</span>
+                </label>
+              </div>
             </div>
-          </fieldset>
 
-          <div class="field">
-            <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
-            <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-          </div>
+            <div class="field">
+              <label class="label" for="guestsCount">Άτομα</label>
+              <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
+            </div>
 
-          <div class="field field--comments">
-            <label class="label" for="comments">Σχόλια</label>
-            <textarea id="comments" class="textarea" name="Σχόλια" rows="2"></textarea>
-          </div>
+            <div class="field">
+              <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
+              <div class="choices twoCols">
+                <label class="choice">
+                  <input type="radio" name="Παιδιά" value="Όχι" checked />
+                  <span>Όχι</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="Παιδιά" value="Ναι" />
+                  <span>Ναι</span>
+                </label>
+              </div>
+            </div>
 
-          <input type="hidden" name="_subject" value="Νέο RSVP" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
+            <div class="field">
+              <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
+              <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+            </div>
 
-          <button class="btn" type="submit">Υποβολή</button>
-        </form>
+            <div class="field commentsField">
+              <label class="label" for="comments">Σχόλια</label>
+              <textarea id="comments" class="textarea" name="Σχόλια" rows="3"></textarea>
+            </div>
 
-        <p id="closed" class="closed" hidden>Το RSVP έχει κλείσει.</p>
+            <input type="hidden" name="_subject" value="Νέο RSVP" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
+
+            <button class="btn" type="submit">Υποβολή</button>
+          </form>
+
+          <p id="closed" class="closed" style="display:none;">Το RSVP έχει κλείσει.</p>
+        </section>
       </div>
     </section>
   </main>
@@ -107,27 +111,29 @@
       const form = document.getElementById("rsvpForm");
       const closed = document.getElementById("closed");
       if (form && closed) {
-        form.hidden = true;
-        closed.hidden = false;
+        form.style.display = "none";
+        closed.style.display = "block";
       }
     }
 
-    /* Ensures the form remains inside the right side without any scroll,
-       even on short mobile screens. */
+    // Κρατά τη φόρμα μέσα στη δεξιά πλευρά χωρίς να ενεργοποιείται scroll.
+    // Σε πολύ μικρές οθόνες τη μικραίνει αναλογικά, αλλά δεν αλλάζει ποτέ διάταξη.
     function fitFormToScreen() {
       const side = document.querySelector(".formSide");
-      const shell = document.getElementById("formShell");
-      if (!side || !shell) return;
+      const fit = document.getElementById("formFit");
+      const card = document.getElementById("formCard");
+      if (!side || !fit || !card) return;
 
-      shell.style.transform = "scale(1)";
-      const sideRect = side.getBoundingClientRect();
-      const shellRect = shell.getBoundingClientRect();
+      fit.style.transform = "scale(1)";
+      fit.style.width = "430px";
 
-      const availableWidth = Math.max(1, sideRect.width - 12);
-      const availableHeight = Math.max(1, sideRect.height - 12);
-      const scale = Math.min(1, availableWidth / shellRect.width, availableHeight / shellRect.height);
+      const availableWidth = side.clientWidth - 16;
+      const availableHeight = side.clientHeight - 16;
+      const cardWidth = card.offsetWidth;
+      const cardHeight = card.offsetHeight;
 
-      shell.style.setProperty("--fit-scale", String(Math.max(0.72, scale)));
+      const scale = Math.min(1, availableWidth / cardWidth, availableHeight / cardHeight);
+      fit.style.transform = `scale(${Math.max(scale, 0.48)})`;
     }
 
     window.addEventListener("load", fitFormToScreen);
