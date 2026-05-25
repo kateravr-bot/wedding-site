@@ -4,26 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>RSVP Γάμος</title>
-  <link rel="stylesheet" href="style.css?v=20260525-final" />
+  <link rel="stylesheet" href="style.css?v=20260525-fixed-4" />
 </head>
 
 <body>
-  <main class="heroSplit" aria-label="RSVP γάμου">
-    <section class="heroMedia" aria-label="Εικόνα RSVP">
+  <main class="rsvpPage" aria-label="RSVP γάμου">
+    <section class="heroMedia" aria-label="Εικόνα πρόσκλησης RSVP">
       <img class="heroImg" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
     </section>
 
     <section class="heroText" aria-label="Φόρμα RSVP">
-      <div class="heroRight">
+      <div id="rsvpContent" class="rsvpContent">
         <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
           <div class="field">
-            <label class="label" for="fullName">Ονοματεπώνυμο <span class="req">*</span></label>
-            <input id="fullName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" autocomplete="name" required />
+            <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
+            <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
           </div>
 
           <div class="field">
             <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
-            <div class="choices" role="radiogroup" aria-label="Παρουσία">
+            <div class="choices">
               <label class="choice">
                 <input type="radio" name="Παρουσία" value="Ναι" required />
                 <span>Ναι</span>
@@ -37,12 +37,12 @@
 
           <div class="field">
             <label class="label" for="guestsCount">Άτομα</label>
-            <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" value="1" />
+            <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
           </div>
 
           <div class="field">
             <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
-            <div class="choices" role="radiogroup" aria-label="Παιδιά">
+            <div class="choices">
               <label class="choice">
                 <input type="radio" name="Παιδιά" value="Όχι" checked />
                 <span>Όχι</span>
@@ -52,11 +52,11 @@
                 <span>Ναι</span>
               </label>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
-            <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+            <div class="kidsAges">
+              <label class="label label--sub" for="kidsAges">Ηλικίες παιδιών</label>
+              <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+            </div>
           </div>
 
           <div class="field field--comments">
@@ -71,7 +71,7 @@
           <button class="btn" type="submit">Υποβολή</button>
         </form>
 
-        <p id="closed" class="error" hidden>Το RSVP έχει κλείσει.</p>
+        <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
       </div>
     </section>
   </main>
@@ -107,8 +107,8 @@
       const form = document.getElementById("rsvpForm");
       const closed = document.getElementById("closed");
       if (form && closed) {
-        form.hidden = true;
-        closed.hidden = false;
+        form.style.display = "none";
+        closed.style.display = "block";
       }
     }
   </script>
