@@ -321,3 +321,213 @@ body {
     min-height: 46px;
   }
 }
+/* ONE-SCREEN RSVP LAYOUT — no page scroll */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+.heroSplit {
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 500px);
+}
+
+/* Αριστερά: μόνο εικόνα, χωρίς κανένα περιθώριο */
+.heroMedia {
+  position: relative;
+  height: 100dvh;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  overflow: hidden;
+  background: none;
+}
+
+.heroImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: none;
+}
+
+/* Δεξιά: compact φόρμα */
+.heroText {
+  height: 100dvh;
+  min-height: 0;
+  padding: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroRight {
+  width: 100%;
+  max-width: 440px;
+  max-height: calc(100dvh - 28px);
+  overflow: hidden;
+}
+
+.panel {
+  padding: 14px;
+  border-radius: 18px;
+}
+
+.form {
+  display: grid;
+  gap: 8px;
+}
+
+.field {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.82rem;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.req,
+.help {
+  font-size: 0.72rem;
+}
+
+.help {
+  display: none;
+}
+
+.input {
+  min-height: 36px;
+  height: 36px;
+  padding: 0 10px;
+  font-size: 0.86rem;
+  border-radius: 11px;
+}
+
+.textarea {
+  min-height: 48px;
+  height: 48px;
+  padding: 8px 10px;
+  font-size: 0.86rem;
+  border-radius: 11px;
+  resize: none;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.choice {
+  min-height: 34px;
+  padding: 0 10px;
+  font-size: 0.86rem;
+  border-radius: 11px;
+}
+
+.choice input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+
+.kids-ages {
+  margin-top: 2px;
+  gap: 4px;
+}
+
+.label--sub {
+  font-size: 0.76rem;
+  margin-top: 0;
+}
+
+.btn {
+  min-height: 38px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* Κινητό: εικόνα επάνω, φόρμα κάτω, πάλι χωρίς σκρολ */
+@media (max-width: 900px) {
+  .heroSplit {
+    height: 100dvh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 34dvh 66dvh;
+  }
+
+  .heroMedia {
+    height: 34dvh;
+    min-height: 0;
+    border: 0;
+  }
+
+  .heroText {
+    height: 66dvh;
+    min-height: 0;
+    padding: 8px;
+    align-items: center;
+  }
+
+  .heroRight {
+    max-width: 100%;
+    max-height: calc(66dvh - 16px);
+  }
+
+  .panel {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .form {
+    gap: 6px;
+  }
+
+  .label {
+    font-size: 0.74rem;
+  }
+
+  .input {
+    min-height: 32px;
+    height: 32px;
+    font-size: 0.78rem;
+  }
+
+  .textarea {
+    min-height: 38px;
+    height: 38px;
+    font-size: 0.78rem;
+  }
+
+  .choice {
+    min-height: 30px;
+    font-size: 0.78rem;
+  }
+
+  .btn {
+    min-height: 34px;
+    font-size: 0.82rem;
+  }
+}
