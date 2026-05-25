@@ -1,141 +1,401 @@
-<!DOCTYPE html>
-<html lang="el">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>RSVP Γάμος</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-<body>
-  <main class="heroSplit" aria-label="RSVP γάμου">
-    <section class="heroMedia" aria-label="Εικόνα RSVP">
-      <img class="heroImg" src="assets/finale_rsvp1.png" alt="RSVP γάμου" />
-    </section>
+:root {
+  --bg: #fbf7f1;
+  --panel: rgba(255, 255, 255, 0.9);
+  --text: #33281f;
+  --muted: #7a6b5e;
+  --line: rgba(70, 53, 39, 0.16);
+  --accent: #9a7a42;
+  --accent-dark: #73572c;
+  --shadow: 0 16px 44px rgba(52, 35, 20, 0.12);
+}
 
-    <section class="heroText" aria-label="Φόρμα RSVP">
-      <div class="heroRight" id="fitCard">
-        <section class="panel">
-          <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-            <div class="field">
-              <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
-              <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
-            </div>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-            <div class="field">
-              <label class="label">Θα παρευρεθείτε στον γάμο; <span class="req">*</span></label>
-              <div class="choices choices--two">
-                <label class="choice">
-                  <input type="radio" name="Παρουσία" value="Ναι" required />
-                  <span>Ναι</span>
-                </label>
-                <label class="choice">
-                  <input type="radio" name="Παρουσία" value="Όχι" required />
-                  <span>Όχι</span>
-                </label>
-              </div>
-            </div>
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+}
 
-            <div class="field">
-              <label class="label" for="guestsCount">Πόσα άτομα θα είστε;</label>
-              <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-            </div>
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+}
 
-            <div class="field">
-              <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
-              <div class="choices choices--two">
-                <label class="choice">
-                  <input type="radio" name="Παιδιά" value="Όχι" checked />
-                  <span>Όχι</span>
-                </label>
-                <label class="choice">
-                  <input type="radio" name="Παιδιά" value="Ναι" />
-                  <span>Ναι</span>
-                </label>
-              </div>
-            </div>
+body::before {
+  display: none !important;
+}
 
-            <div class="field field--compact">
-              <label class="label" for="kidsAges">Ηλικίες παιδιών, αν υπάρχουν</label>
-              <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-            </div>
+/* Î Î»Î®ÏÎ·Ï‚ Î¿Î¸ÏŒÎ½Î·: Î±ÏÎ¹ÏƒÏ„ÎµÏÎ¬ Î¼ÏŒÎ½Î¿ ÎµÎ¹ÎºÏŒÎ½Î±, Î´ÎµÎ¾Î¹Î¬ Ï†ÏŒÏÎ¼Î± */
+.rsvpPage,
+.heroSplit {
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(350px, 480px) !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: var(--bg) !important;
+}
 
-            <div class="field field--compact">
-              <label class="label" for="comments">Σχόλια</label>
-              <textarea id="comments" class="textarea" name="Σχόλια" rows="2"></textarea>
-            </div>
+/* Î‘ÏÎ¹ÏƒÏ„ÎµÏÎ¬: ÎœÎŸÎÎŸ Î· ÎµÎ¹ÎºÏŒÎ½Î± â€” Ï‡Ï‰ÏÎ¯Ï‚ padding, border, background, ÎºÎµÎ½Î¬ */
+.heroMedia {
+  position: relative !important;
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  background: transparent !important;
+}
 
-            <input type="hidden" name="_subject" value="Νέο RSVP" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
+.heroImg {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  transform: scale(1.02) !important;
+  transform-origin: center center !important;
+  filter: none !important;
+}
 
-            <button class="btn" type="submit">Υποβολή</button>
-          </form>
+.heroMeta,
+.wrap,
+.heroTitle,
+.h2,
+.countdown {
+  display: none !important;
+}
 
-          <p id="closed" class="error" hidden>Το RSVP έχει κλείσει.</p>
-        </section>
-      </div>
-    </section>
-  </main>
+/* Î”ÎµÎ¾Î¹Î¬: compact Ï†ÏŒÏÎ¼Î± ÏŽÏƒÏ„Îµ Î½Î± Î¼Î· Ï‡ÏÎµÎ¹Î¬Î¶ÎµÏ„Î±Î¹ scroll */
+.heroText {
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(232, 205, 133, 0.16), transparent 30%),
+    linear-gradient(135deg, #fbf8f3 0%, #f3eadf 100%) !important;
+}
 
-  <script>
-    function syncGuestsCountWithAttendance() {
-      const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
-      const guests = document.getElementById("guestsCount");
-      if (!guests) return;
+.heroRight {
+  width: 100% !important;
+  max-width: 430px !important;
+  max-height: calc(100vh - 24px) !important;
+  max-height: calc(100dvh - 24px) !important;
+  display: block !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+}
 
-      if (attendingNo) {
-        guests.value = "0";
-        guests.min = "0";
-        guests.max = "0";
-        guests.readOnly = true;
-        guests.classList.add("locked");
-      } else {
-        guests.min = "1";
-        guests.max = "10";
-        guests.readOnly = false;
-        guests.classList.remove("locked");
-        if (guests.value === "0") guests.value = "1";
-      }
-    }
+.panel {
+  width: 100% !important;
+  max-height: calc(100vh - 24px) !important;
+  max-height: calc(100dvh - 24px) !important;
+  padding: 14px !important;
+  overflow: hidden !important;
+  background: var(--panel) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: blur(10px);
+}
 
-    document.querySelectorAll('input[name="Παρουσία"]').forEach((el) => {
-      el.addEventListener("change", syncGuestsCountWithAttendance);
-    });
-    syncGuestsCountWithAttendance();
+.form {
+  display: grid !important;
+  gap: 8px !important;
+  margin: 0 !important;
+}
 
-    const deadline = new Date("2026-07-10T23:59:59");
-    if (new Date() > deadline) {
-      const form = document.getElementById("rsvpForm");
-      const closed = document.getElementById("closed");
-      if (form && closed) {
-        form.hidden = true;
-        closed.hidden = false;
-      }
-    }
+.field {
+  display: grid !important;
+  gap: 4px !important;
+  margin: 0 !important;
+}
 
-    // Κρατά τη φόρμα οπτικά μέσα στο διαθέσιμο ύψος, χωρίς scroll.
-    function fitCardToViewport() {
-      const container = document.querySelector(".heroText");
-      const card = document.getElementById("fitCard");
-      if (!container || !card) return;
+.label {
+  display: block !important;
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  line-height: 1.15 !important;
+  color: var(--text) !important;
+  text-align: left !important;
+}
 
-      card.style.setProperty("--fit-scale", "1");
+.label--sub {
+  margin-top: 0 !important;
+  font-size: 0.72rem !important;
+  color: var(--muted) !important;
+}
 
-      window.requestAnimationFrame(() => {
-        const availableHeight = container.clientHeight - 12;
-        const availableWidth = container.clientWidth - 12;
-        const neededHeight = card.scrollHeight;
-        const neededWidth = card.scrollWidth;
+.req,
+.help {
+  color: var(--muted) !important;
+  font-size: 0.7rem !important;
+  font-weight: 500 !important;
+}
 
-        const scale = Math.min(1, availableHeight / neededHeight, availableWidth / neededWidth);
-        card.style.setProperty("--fit-scale", String(Math.max(0.62, scale)));
-      });
-    }
+.help {
+  display: none !important;
+}
 
-    window.addEventListener("load", fitCardToViewport);
-    window.addEventListener("resize", fitCardToViewport);
-    window.addEventListener("orientationchange", () => setTimeout(fitCardToViewport, 250));
-  </script>
-</body>
-</html>
+.input,
+.textarea {
+  width: 100% !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 11px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: var(--text) !important;
+  font: inherit !important;
+  font-size: 0.82rem !important;
+  line-height: 1.2 !important;
+  outline: none !important;
+}
+
+.input {
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 0 10px !important;
+}
+
+.textarea {
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 7px 10px !important;
+  resize: none !important;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: rgba(154, 122, 66, 0.62) !important;
+  box-shadow: 0 0 0 3px rgba(154, 122, 66, 0.12) !important;
+  background: #fff !important;
+}
+
+.input.locked,
+.locked {
+  background: rgba(236, 229, 220, 0.72) !important;
+  color: var(--muted) !important;
+  cursor: not-allowed !important;
+}
+
+.choices {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  padding-top: 0 !important;
+}
+
+.choice {
+  min-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 0 10px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 11px !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+}
+
+.choice input,
+.choice input[type="radio"] {
+  width: 15px !important;
+  height: 15px !important;
+  accent-color: var(--accent) !important;
+}
+
+.kids-ages {
+  display: grid !important;
+  gap: 4px !important;
+  margin-top: 2px !important;
+}
+
+.btn,
+.btn--wide {
+  width: 100% !important;
+  min-height: 36px !important;
+  margin-top: 2px !important;
+  padding: 8px 14px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%) !important;
+  color: #fff !important;
+  font: inherit !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  cursor: pointer !important;
+  box-shadow: 0 10px 20px rgba(115, 87, 44, 0.18) !important;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  opacity: 0.94;
+}
+
+.error {
+  color: #8b2d20 !important;
+  margin: 8px 0 0 !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+}
+
+/* ÎšÎ¹Î½Î·Ï„ÏŒ: ÎµÎ¹ÎºÏŒÎ½Î± ÎµÏ€Î¬Î½Ï‰, Ï†ÏŒÏÎ¼Î± ÎºÎ¬Ï„Ï‰, Ï€Î¬Î»Î¹ Ï‡Ï‰ÏÎ¯Ï‚ scroll */
+@media (max-width: 900px) {
+  .rsvpPage,
+  .heroSplit {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 30vh 70vh !important;
+    grid-template-rows: 30dvh 70dvh !important;
+  }
+
+  .heroMedia {
+    width: 100vw !important;
+    height: 30vh !important;
+    height: 30dvh !important;
+  }
+
+  .heroText {
+    height: 70vh !important;
+    height: 70dvh !important;
+    padding: 8px !important;
+    align-items: center !important;
+  }
+
+  .heroRight {
+    max-width: 100% !important;
+    max-height: calc(70vh - 16px) !important;
+    max-height: calc(70dvh - 16px) !important;
+  }
+
+  .panel {
+    max-height: calc(70vh - 16px) !important;
+    max-height: calc(70dvh - 16px) !important;
+    padding: 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .form {
+    gap: 6px !important;
+  }
+
+  .label {
+    font-size: 0.72rem !important;
+  }
+
+  .label--sub,
+  .req {
+    font-size: 0.64rem !important;
+  }
+
+  .input {
+    height: 30px !important;
+    min-height: 30px !important;
+    font-size: 0.76rem !important;
+  }
+
+  .textarea {
+    height: 34px !important;
+    min-height: 34px !important;
+    font-size: 0.76rem !important;
+  }
+
+  .choice {
+    min-height: 28px !important;
+    font-size: 0.76rem !important;
+  }
+
+  .choice input,
+  .choice input[type="radio"] {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .btn,
+  .btn--wide {
+    min-height: 32px !important;
+    padding: 6px 12px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Î Î¿Î»Ï Ï‡Î±Î¼Î·Î»Î­Ï‚ Î¿Î¸ÏŒÎ½ÎµÏ‚: Î±ÎºÏŒÎ¼Î± Ï€Î¹Î¿ compact */
+@media (max-height: 700px) {
+  .heroRight,
+  .panel {
+    max-height: calc(100dvh - 16px) !important;
+  }
+
+  .panel {
+    padding: 9px !important;
+  }
+
+  .form {
+    gap: 5px !important;
+  }
+
+  .label {
+    font-size: 0.68rem !important;
+  }
+
+  .input {
+    height: 28px !important;
+    min-height: 28px !important;
+  }
+
+  .textarea {
+    height: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .choice {
+    min-height: 26px !important;
+  }
+
+  .btn,
+  .btn--wide {
+    min-height: 30px !important;
+  }
+}
