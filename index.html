@@ -4,75 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>RSVP Γάμος</title>
-  <link rel="stylesheet" href="style.css?v=20260525-fixed-4" />
+  <link rel="stylesheet" href="style.css?v=20260525-top-photo-mobile" />
 </head>
 
 <body>
-  <main class="rsvpPage" aria-label="RSVP γάμου">
-    <section class="heroMedia" aria-label="Εικόνα πρόσκλησης RSVP">
-      <img class="heroImg" src="assets/minfoto.png" alt="RSVP γάμου" />
+  <main class="rsvpShell" aria-label="RSVP γάμου">
+    <section class="photoPanel" aria-label="Εικόνα RSVP">
+      <img class="rsvpImage" src="assets/minfoto.png" alt="RSVP γάμου" />
     </section>
 
-    <section class="heroText" aria-label="Φόρμα RSVP">
-      <div id="rsvpContent" class="rsvpContent">
-        <form id="rsvpForm" class="form" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-          <div class="field">
-            <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
-            <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
+    <section class="formPanel" aria-label="Φόρμα RSVP">
+      <form id="rsvpForm" class="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+        <div class="field">
+          <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
+          <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
+        </div>
+
+        <div class="field">
+          <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="Παρουσία" value="Ναι" required />
+              <span>Ναι</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="Παρουσία" value="Όχι" required />
+              <span>Όχι</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="guestsCount">Άτομα</label>
+          <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
+        </div>
+
+        <div class="field fieldKids">
+          <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="Παιδιά" value="Όχι" checked />
+              <span>Όχι</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="Παιδιά" value="Ναι" />
+              <span>Ναι</span>
+            </label>
           </div>
 
-          <div class="field">
-            <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
-            <div class="choices">
-              <label class="choice">
-                <input type="radio" name="Παρουσία" value="Ναι" required />
-                <span>Ναι</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="Παρουσία" value="Όχι" required />
-                <span>Όχι</span>
-              </label>
-            </div>
-          </div>
+          <label class="label labelSub" for="kidsAges">Ηλικίες παιδιών</label>
+          <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+        </div>
 
-          <div class="field">
-            <label class="label" for="guestsCount">Άτομα</label>
-            <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-          </div>
+        <div class="field fieldComments">
+          <label class="label" for="comments">Σχόλια</label>
+          <textarea id="comments" class="textarea" name="Σχόλια" rows="2"></textarea>
+        </div>
 
-          <div class="field">
-            <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
-            <div class="choices">
-              <label class="choice">
-                <input type="radio" name="Παιδιά" value="Όχι" checked />
-                <span>Όχι</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="Παιδιά" value="Ναι" />
-                <span>Ναι</span>
-              </label>
-            </div>
+        <input type="hidden" name="_subject" value="Νέο RSVP" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
 
-            <div class="kidsAges">
-              <label class="label label--sub" for="kidsAges">Ηλικίες παιδιών</label>
-              <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-            </div>
-          </div>
+        <button class="submitBtn" type="submit">Υποβολή</button>
+      </form>
 
-          <div class="field field--comments">
-            <label class="label" for="comments">Σχόλια</label>
-            <textarea id="comments" class="textarea" name="Σχόλια" rows="3"></textarea>
-          </div>
-
-          <input type="hidden" name="_subject" value="Νέο RSVP" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
-
-          <button class="btn" type="submit">Υποβολή</button>
-        </form>
-
-        <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
-      </div>
+      <p id="closed" class="closedMessage" style="display:none;">Το RSVP έχει κλείσει.</p>
     </section>
   </main>
 
@@ -108,7 +104,7 @@
       const closed = document.getElementById("closed");
       if (form && closed) {
         form.style.display = "none";
-        closed.style.display = "block";
+        closed.style.display = "grid";
       }
     }
   </script>
