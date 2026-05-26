@@ -4,71 +4,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>RSVP Γάμος</title>
-  <link rel="stylesheet" href="style.css?v=20260525-top-photo-mobile" />
+  <link rel="stylesheet" href="style.css?v=20260526-formsafe" />
 </head>
 
 <body>
-  <main class="rsvpShell" aria-label="RSVP γάμου">
-    <section class="photoPanel" aria-label="Εικόνα RSVP">
-      <img class="rsvpImage" src="assets/minfoto.png" alt="RSVP γάμου" />
+  <main class="rsvpPage" aria-label="RSVP γάμου">
+    <!-- ΠΑΝΩ: Φόρμα -->
+    <section class="formArea" aria-label="Φόρμα RSVP">
+      <div class="formShell">
+        <form id="rsvpForm" class="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
+          <div class="field fieldName">
+            <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
+            <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
+          </div>
+
+          <div class="field fieldAttendance">
+            <span class="label">Θα παρευρεθείτε; <span class="req">*</span></span>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="Παρουσία" value="Ναι" required />
+                <span>Ναι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παρουσία" value="Όχι" required />
+                <span>Όχι</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field fieldGuests">
+            <label class="label" for="guestsCount">Άτομα</label>
+            <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
+          </div>
+
+          <div class="field fieldKids">
+            <span class="label">Υπάρχουν παιδιά; <span class="req">*</span></span>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Όχι" checked />
+                <span>Όχι</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="Παιδιά" value="Ναι" />
+                <span>Ναι</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field fieldAges">
+            <label class="label" for="kidsAges">Ηλικίες παιδιών</label>
+            <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+          </div>
+
+          <div class="field fieldComments">
+            <label class="label" for="comments">Σχόλια</label>
+            <textarea id="comments" class="textarea" name="Σχόλια" rows="2"></textarea>
+          </div>
+
+          <input type="hidden" name="_subject" value="Νέο RSVP" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
+
+          <button class="btn fieldButton" type="submit">Υποβολή</button>
+        </form>
+
+        <p id="closed" class="closedMessage" hidden>Το RSVP έχει κλείσει.</p>
+      </div>
     </section>
 
-    <section class="formPanel" aria-label="Φόρμα RSVP">
-      <form id="rsvpForm" class="rsvpForm" action="https://formsubmit.co/TO_EMAIL_SOU" method="POST">
-        <div class="field">
-          <label class="label" for="guestName">Ονοματεπώνυμο <span class="req">*</span></label>
-          <input id="guestName" class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
-        </div>
-
-        <div class="field">
-          <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
-          <div class="choices">
-            <label class="choice">
-              <input type="radio" name="Παρουσία" value="Ναι" required />
-              <span>Ναι</span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="Παρουσία" value="Όχι" required />
-              <span>Όχι</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label" for="guestsCount">Άτομα</label>
-          <input id="guestsCount" class="input" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
-        </div>
-
-        <div class="field fieldKids">
-          <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
-          <div class="choices">
-            <label class="choice">
-              <input type="radio" name="Παιδιά" value="Όχι" checked />
-              <span>Όχι</span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="Παιδιά" value="Ναι" />
-              <span>Ναι</span>
-            </label>
-          </div>
-
-          <label class="label labelSub" for="kidsAges">Ηλικίες παιδιών</label>
-          <input id="kidsAges" class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
-        </div>
-
-        <div class="field fieldComments">
-          <label class="label" for="comments">Σχόλια</label>
-          <textarea id="comments" class="textarea" name="Σχόλια" rows="2"></textarea>
-        </div>
-
-        <input type="hidden" name="_subject" value="Νέο RSVP" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
-
-        <button class="submitBtn" type="submit">Υποβολή</button>
-      </form>
-
-      <p id="closed" class="closedMessage" style="display:none;">Το RSVP έχει κλείσει.</p>
+    <!-- ΚΑΤΩ: Φωτογραφία -->
+    <section class="photoArea" aria-label="Εικόνα RSVP">
+      <img class="rsvpImage" src="assets/minfoto.png" alt="RSVP γάμου" />
     </section>
   </main>
 
@@ -103,8 +109,8 @@
       const form = document.getElementById("rsvpForm");
       const closed = document.getElementById("closed");
       if (form && closed) {
-        form.style.display = "none";
-        closed.style.display = "grid";
+        form.hidden = true;
+        closed.hidden = false;
       }
     }
   </script>
