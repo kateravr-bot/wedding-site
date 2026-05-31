@@ -18,21 +18,21 @@
         </header>
 
         <div id="rsvpContent">
-          <form id="rsvpForm" class="form" action="https://formsubmit.co/kat.avramidou@gmail.com" method="POST">
+          <form id="rsvpForm" class="form" action="https://docs.google.com/forms/d/e/1FAIpQLSc-FSvKEY1499QWkTmzYSTOFIFHxrF7_jV68O7r18IClrXN2Q/formResponse" method="POST" target="hidden_iframe" accept-charset="UTF-8">
             <div class="field field--wide">
               <label class="label">Ονοματεπώνυμο <span class="req">*</span></label>
-              <input class="input" type="text" name="Όνομα" placeholder="Ονοματεπώνυμο" required />
+              <input class="input" type="text" name="entry.921213476" placeholder="Ονοματεπώνυμο" required />
             </div>
 
             <div class="field">
               <label class="label">Θα παρευρεθείτε; <span class="req">*</span></label>
               <div class="choices">
                 <label class="choice">
-                  <input type="radio" name="Παρουσία" value="Ναι" required />
+                  <input type="radio" name="entry.415043231" value="Ναι" required />
                   <span>Ναι</span>
                 </label>
                 <label class="choice">
-                  <input type="radio" name="Παρουσία" value="Όχι" required />
+                  <input type="radio" name="entry.415043231" value="Όχι" required />
                   <span>Όχι</span>
                 </label>
               </div>
@@ -40,18 +40,18 @@
 
             <div class="field">
               <label class="label">Άτομα</label>
-              <input class="input" id="guestsCount" type="number" name="Άτομα" min="0" max="10" placeholder="2" value="1" />
+              <input class="input" id="guestsCount" type="number" name="entry.369662035" min="0" max="10" placeholder="2" value="1" />
             </div>
 
             <div class="field">
               <label class="label">Υπάρχουν παιδιά; <span class="req">*</span></label>
               <div class="choices">
                 <label class="choice">
-                  <input type="radio" name="Παιδιά" value="Όχι" checked />
+                  <input type="radio" name="entry.173540478" value="Όχι" checked />
                   <span>Όχι</span>
                 </label>
                 <label class="choice">
-                  <input type="radio" name="Παιδιά" value="Ναι" />
+                  <input type="radio" name="entry.173540478" value="Ναι" />
                   <span>Ναι</span>
                 </label>
               </div>
@@ -59,21 +59,20 @@
 
             <div class="field">
               <label class="label">Ηλικίες παιδιών</label>
-              <input class="input" type="text" name="Ηλικίες παιδιών" placeholder="π.χ. 4 και 7" />
+              <input class="input" type="text" name="entry.1887314842" placeholder="π.χ. 4 και 7" />
             </div>
 
             <div class="field field--wide">
               <label class="label">Σχόλια</label>
-              <textarea class="textarea" name="Σχόλια" rows="3"></textarea>
+              <textarea class="textarea" name="entry.807278448" rows="3"></textarea>
             </div>
 
-            <input type="hidden" name="_subject" value="Νέο RSVP" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_autoresponse" value="Σας ευχαριστούμε θερμά για την απάντησή σας στον γάμο μας!" />
 
             <button class="btn field--wide" type="submit">Υποβολή</button>
           </form>
 
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+          <p id="thanks" class="error" style="display:none;">Σας ευχαριστούμε θερμά για την απάντησή σας!</p>
           <p id="closed" class="error" style="display:none;">Το RSVP έχει κλείσει.</p>
         </div>
       </div>
@@ -90,8 +89,10 @@
   </main>
 
   <script>
+    let submitted = false;
+
     function syncGuestsCountWithAttendance() {
-      const attendingNo = document.querySelector('input[name="Παρουσία"][value="Όχι"]')?.checked;
+      const attendingNo = document.querySelector('input[name="entry.415043231"][value="Όχι"]')?.checked;
       const guests = document.getElementById("guestsCount");
       if (!guests) return;
 
@@ -110,10 +111,33 @@
       }
     }
 
-    document.querySelectorAll('input[name="Παρουσία"]').forEach((el) => {
+    document.querySelectorAll('input[name="entry.415043231"]').forEach((el) => {
       el.addEventListener("change", syncGuestsCountWithAttendance);
     });
     syncGuestsCountWithAttendance();
+
+    const rsvpForm = document.getElementById("rsvpForm");
+    const hiddenIframe = document.getElementById("hidden_iframe");
+    const thanks = document.getElementById("thanks");
+
+    if (rsvpForm) {
+      rsvpForm.addEventListener("submit", () => {
+        submitted = true;
+        const submitButton = rsvpForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Αποστολή...";
+        }
+      });
+    }
+
+    if (hiddenIframe) {
+      hiddenIframe.addEventListener("load", () => {
+        if (!submitted) return;
+        if (rsvpForm) rsvpForm.style.display = "none";
+        if (thanks) thanks.style.display = "block";
+      });
+    }
 
     const deadline = new Date("2026-07-10T23:59:59");
     if (new Date() > deadline) {
